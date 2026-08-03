@@ -73,11 +73,12 @@
   .etapa .num{font-family:var(--font-mono);font-size:10.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--paper);background:var(--ink);padding:5px 12px;border-radius:999px;white-space:nowrap}
   .etapa .risco{flex:1;height:1px;background:var(--line)}
 
-  .passos{counter-reset:p;display:flex;flex-direction:column;gap:0}
-  .passo{counter-increment:p;display:grid;grid-template-columns:34px 1fr;gap:16px;padding:18px 0;border-top:1px solid var(--line)}
-  .passo:first-child{border-top:0}
-  .passo:before{content:counter(p);font-family:var(--font-mono);font-size:12px;font-weight:700;color:var(--accent);background:var(--panel);border:1px solid var(--line);width:26px;height:26px;border-radius:50%;display:grid;place-items:center;align-self:start}
-  .passo h3{margin:1px 0 8px}
+  .passos{counter-reset:p;display:flex;flex-direction:column;gap:12px}
+  .passo{counter-increment:p;background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:18px 22px}
+  /* O numero fica dentro do titulo, e nao numa coluna propria: assim ele
+     nunca some em tela estreita, que era o que quebrava a leitura. */
+  .passo h3{margin:0 0 10px;display:flex;align-items:center;gap:11px;line-height:1.3}
+  .passo h3:before{content:counter(p);font-family:var(--font-mono);font-size:11.5px;font-weight:700;color:var(--paper);background:var(--accent);min-width:24px;height:24px;border-radius:50%;display:inline-grid;place-items:center;flex:0 0 auto}
   .passo p{margin:0 0 9px;font-size:13.5px;line-height:1.6}
   .passo p:last-child{margin-bottom:0}
   .passo .obs{color:var(--muted);font-size:12.5px}
@@ -99,8 +100,7 @@
   .modelo .rot{font-family:var(--font-mono);font-size:10.5px;color:var(--accent);display:block}
 
   @media (max-width:760px){
-    .passo{grid-template-columns:1fr}
-    .passo:before{display:none}
+    .passo{padding:16px 18px}
   }
 
   /* ---------- Indice ---------- */
@@ -207,8 +207,8 @@
     h1{font-size:27px}
     .duo{grid-template-columns:1fr}
     .trilhas{grid-template-columns:1fr}
-    .fstep{grid-template-columns:1fr}
-    .fnum{display:none}
+    .fstep{grid-template-columns:30px 1fr;gap:12px}
+    .fnum{width:24px;height:24px;font-size:11px}
   }
 </style>
 </head>
