@@ -42,6 +42,67 @@
   .section-sub{font-size:13.5px;color:var(--muted);margin:0 0 22px;max-width:62ch;line-height:1.55}
   .section{margin-bottom:52px}
 
+  /* ---------- Abas ---------- */
+  .abas{display:flex;gap:8px;margin:0 0 32px;flex-wrap:wrap}
+  .aba{font-family:var(--font-body);font-size:13.5px;font-weight:600;padding:10px 20px;border-radius:999px;border:1px solid var(--line);background:var(--panel);color:var(--muted);cursor:pointer}
+  .aba:hover{border-color:var(--accent);color:var(--accent)}
+  .aba.ativa{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+  .aba.ativa:hover{color:var(--paper)}
+  .aba:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+
+  /* ---------- Passo a passo (aba 2) ---------- */
+  .avisos{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:20px 24px;margin:28px 0 40px}
+  .avisos p{margin:0;font-size:13.5px;line-height:1.6}
+  .avisos p + p{margin-top:10px}
+  .avisos b{font-weight:600}
+
+  .indice-passo{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:24px 26px;margin:0 0 48px}
+  .indice-passo > .titulo{font-family:var(--font-mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);margin-bottom:16px}
+  .indice-passo ol{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:10px}
+  .indice-passo li{display:grid;grid-template-columns:74px 1fr auto;gap:14px;align-items:baseline}
+  .indice-passo .et{font-family:var(--font-mono);font-size:10.5px;font-weight:700;color:var(--accent);text-transform:uppercase;letter-spacing:.05em}
+  .indice-passo a{color:var(--ink);text-decoration:none;font-size:14px;font-weight:600;border-bottom:1px solid transparent}
+  .indice-passo a:hover{color:var(--accent);border-bottom-color:var(--accent)}
+  .indice-passo .dur{font-size:11.5px;color:var(--muted);white-space:nowrap}
+  @media (max-width:640px){
+    .indice-passo li{grid-template-columns:1fr;gap:2px}
+    .indice-passo .dur{display:none}
+  }
+
+  .etapa{display:flex;align-items:center;gap:14px;margin:0 0 8px}
+  .etapa .num{font-family:var(--font-mono);font-size:10.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--paper);background:var(--ink);padding:5px 12px;border-radius:999px;white-space:nowrap}
+  .etapa .risco{flex:1;height:1px;background:var(--line)}
+
+  .passos{counter-reset:p;display:flex;flex-direction:column;gap:0}
+  .passo{counter-increment:p;display:grid;grid-template-columns:34px 1fr;gap:16px;padding:18px 0;border-top:1px solid var(--line)}
+  .passo:first-child{border-top:0}
+  .passo:before{content:counter(p);font-family:var(--font-mono);font-size:12px;font-weight:700;color:var(--accent);background:var(--panel);border:1px solid var(--line);width:26px;height:26px;border-radius:50%;display:grid;place-items:center;align-self:start}
+  .passo h3{margin:1px 0 8px}
+  .passo p{margin:0 0 9px;font-size:13.5px;line-height:1.6}
+  .passo p:last-child{margin-bottom:0}
+  .passo .obs{color:var(--muted);font-size:12.5px}
+  .passo b{font-weight:600}
+  .caminho{display:inline-block;font-family:var(--font-mono);font-size:11.5px;background:var(--panel-2);border:1px solid var(--line);border-radius:7px;padding:5px 10px;margin:2px 0 8px;line-height:1.5}
+  .armadilha{background:var(--panel-2);border-left:3px solid #c98a2b;border-radius:0 8px 8px 0;padding:11px 14px;margin-top:10px;font-size:12.5px;line-height:1.55}
+  .armadilha b{font-weight:600}
+
+  .campos{width:100%;border-collapse:collapse;font-size:13px;margin-top:10px}
+  .campos th{text-align:left;font-size:10px;text-transform:uppercase;letter-spacing:.05em;color:var(--muted);font-weight:700;padding:0 12px 8px;border-bottom:1px solid var(--line)}
+  .campos td{padding:10px 12px;border-bottom:1px solid var(--line);vertical-align:top;line-height:1.5}
+  .campos td:first-child,.campos th:first-child{padding-left:0}
+  .campos .cfg{font-family:var(--font-mono);font-weight:600;color:var(--accent);white-space:nowrap}
+
+  .modelo{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:16px 18px;margin-top:12px}
+  .modelo .mt{font-family:var(--font-mono);font-size:10px;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin-bottom:8px}
+  .modelo .linha{font-size:13.5px;line-height:1.6;padding:5px 0;border-top:1px dashed var(--line)}
+  .modelo .linha:first-of-type{border-top:0}
+  .modelo .rot{font-family:var(--font-mono);font-size:10.5px;color:var(--accent);display:block}
+
+  @media (max-width:760px){
+    .passo{grid-template-columns:1fr}
+    .passo:before{display:none}
+  }
+
   /* ---------- Indice ---------- */
   .indice{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:24px 26px;margin:32px 0 48px}
   .indice > .titulo{font-family:var(--font-mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);margin-bottom:18px}
@@ -168,6 +229,13 @@
       <div class="date">Guia interno · tráfego pago</div>
     </div>
   </div>
+
+  <div class="abas">
+    <button class="aba ativa" data-aba="como" type="button">Como funciona</button>
+    <button class="aba" data-aba="passo" type="button">Passo a passo</button>
+  </div>
+
+  <div id="tabComo">
 
   <h1>Como a engrenagem funciona por dentro.</h1>
   <p class="lede">O que acontece entre alguém clicar num anúncio e a squad saber que aquilo virou oportunidade — <b>e o que precisa estar instalado</b> para que essa história seja medida. Este guia cobre a operação e o código.</p>
@@ -586,20 +654,372 @@ document.getElementById('<span class="ph">formulario-contato</span>').addEventLi
     Material interno da squad Omnichannel · complementa a <a href="https://obliant.github.io/estrategia-omnichannel/" style="color:var(--accent)">estratégia</a> e a <a href="https://obliant.github.io/proposta-trafego-pago/" style="color:var(--accent)">proposta de investimento</a>.<br>
     Os identificadores nos exemplos são fictícios — substituir pelos das contas reais quando forem criadas.
   </div>
+
+  </div><!-- fim tabComo -->
+
+  <div id="tabPasso" style="display:none">
+  <h1>O que fazer, na ordem, sem ser especialista.</h1>
+  <p class="lede">Este documento é para ser seguido com a plataforma aberta na outra aba. Cada etapa diz <b>o que fazer, onde clicar e o que responder</b> — e, quando existe uma escolha que custa caro errar, explica o porquê.</p>
+
+  <div class="avisos">
+    <p><b>Duas ressalvas honestas antes de começar.</b></p>
+    <p><b>1.</b> Google e LinkedIn mudam a interface com frequência. Os caminhos aqui descrevem a lógica dos menus, que é estável, mas um botão pode estar com outro nome ou em outro canto. Se não encontrar algo pelo nome exato, procure pelo que a etapa diz que você está tentando fazer.</p>
+    <p><b>2.</b> Isto cobre uma primeira campanha bem-feita, não tudo que existe em mídia paga. É o suficiente para rodar o piloto com segurança e aprender com dados reais — que é exatamente o objetivo desta fase.</p>
+  </div>
+
+  <div class="indice-passo">
+    <div class="titulo">As sete etapas</div>
+    <ol>
+      <li><span class="et">Etapa 1</span><a href="#oferta">Definir a oferta</a><span class="dur">1 reunião</span></li>
+      <li><span class="et">Etapa 2</span><a href="#lp">Construir a landing page</a><span class="dur">3 a 5 dias</span></li>
+      <li><span class="et">Etapa 3</span><a href="#contas">Criar as contas</a><span class="dur">1 a 2 horas</span></li>
+      <li><span class="et">Etapa 4</span><a href="#medicao">Instalar e testar a medição</a><span class="dur">meio dia</span></li>
+      <li><span class="et">Etapa 5</span><a href="#google">Montar a campanha do Google</a><span class="dur">meio dia</span></li>
+      <li><span class="et">Etapa 6</span><a href="#linkedin">Montar a campanha do LinkedIn</a><span class="dur">2 a 3 horas</span></li>
+      <li><span class="et">Etapa 7</span><a href="#ligar">Ligar e acompanhar</a><span class="dur">contínuo</span></li>
+    </ol>
+  </div>
+
+  <div class="etapa"><span class="num">Etapa 1</span><span class="risco"></span></div>
+  <div class="section" id="oferta">
+    <h2>Definir a oferta</h2>
+    <p class="section-sub">A pergunta que decide o resultado da campanha inteira: <b>o que a pessoa ganha ao preencher o formulário?</b> Sem uma resposta boa, nada do que vem depois salva.</p>
+
+    <div class="passos">
+      <div class="passo">
+        <h3>Escolha o que oferecer em troca do contato</h3>
+        <p>Ninguém preenche formulário para "falar com um consultor" — isso soa como entrar num funil de venda. A oferta precisa ter valor próprio, mesmo que a pessoa não compre nada depois.</p>
+        <p class="obs">Opções que funcionam para consultoria de ticket alto, da mais leve para a mais comprometida: um diagnóstico rápido de governança de projetos; uma conversa de 30 minutos com um especialista, sem compromisso; um material que ajude a pessoa a avaliar a própria situação.</p>
+        <div class="armadilha"><b>O teste:</b> se a oferta descrita em voz alta soar como "me dá seu telefone que eu te ligo para vender", ela ainda não está boa.</div>
+      </div>
+
+      <div class="passo">
+        <h3>Escreva a promessa em uma frase</h3>
+        <p>Essa frase vai virar o título da landing page e o texto do anúncio. Precisa dizer o resultado, não o serviço.</p>
+        <div class="modelo">
+          <div class="mt">Exemplo para PMGO</div>
+          <div class="linha"><span class="rot">Fraco — descreve o serviço</span>Consultoria em gestão de projetos para empresas</div>
+          <div class="linha"><span class="rot">Melhor — descreve o resultado</span>Saiba em 30 minutos onde seus projetos estão travando — e o que fazer a respeito</div>
+        </div>
+      </div>
+
+      <div class="passo">
+        <h3>Defina quem atende e em quanto tempo</h3>
+        <p>Antes de gastar o primeiro real: quem recebe o aviso quando um lead chega, e qual o prazo de resposta. Registre isso por escrito com a pessoa, não como intenção.</p>
+        <p class="obs">Em venda consultiva, responder no mesmo dia muda a taxa de conversão de forma perceptível. Um lead respondido em três dias frequentemente já resolveu de outro jeito ou esfriou.</p>
+      </div>
+
+      <div class="passo">
+        <h3>Repita para o segundo produto</h3>
+        <p>PMGO e PMO precisam de ofertas separadas, porque o contexto de quem procura cada um é diferente. Duas ofertas, duas promessas, duas landing pages.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="etapa"><span class="num">Etapa 2</span><span class="risco"></span></div>
+  <div class="section" id="lp">
+    <h2>Construir a landing page</h2>
+    <p class="section-sub">Uma página por produto. Não é uma seção do site institucional — é uma página com um assunto só e um caminho só.</p>
+
+    <div class="passos">
+      <div class="passo">
+        <h3>Monte a estrutura nesta ordem</h3>
+        <p>A sequência abaixo é a que responde as perguntas do visitante na ordem em que elas aparecem na cabeça dele.</p>
+        <div class="modelo">
+          <div class="mt">Estrutura da página</div>
+          <div class="linha"><span class="rot">1 · Título</span>A promessa da Etapa 1, palavra por palavra igual ao anúncio</div>
+          <div class="linha"><span class="rot">2 · Subtítulo</span>Para quem é — "para empresas em implantação de ERP ou com vários projetos simultâneos"</div>
+          <div class="linha"><span class="rot">3 · O problema</span>Três ou quatro sintomas que a pessoa reconhece: atrasos, retrabalho, falta de visão de risco</div>
+          <div class="linha"><span class="rot">4 · O que a Obliant faz</span>Explicação curta, sem jargão de metodologia</div>
+          <div class="linha"><span class="rot">5 · Prova</span>Case, número, cliente conhecido, tempo de mercado — o que houver de concreto</div>
+          <div class="linha"><span class="rot">6 · Formulário</span>Com o título dizendo o que a pessoa recebe, não "entre em contato"</div>
+        </div>
+        <div class="armadilha"><b>Regra de ouro:</b> a página não pode ter menu de navegação para o resto do site. Todo link que leva embora é uma fuga que você pagou para acontecer.</div>
+      </div>
+
+      <div class="passo">
+        <h3>Defina os campos do formulário</h3>
+        <p>Cada campo a mais reduz o número de pessoas que concluem, e aumenta a qualidade de quem conclui. Para ticket de dezenas de milhares de reais, vale filtrar.</p>
+        <div class="tblwrap">
+          <table class="campos">
+            <thead><tr><th>Campo</th><th>Incluir?</th></tr></thead>
+            <tbody>
+              <tr><td class="cfg">Nome</td><td>Sim</td></tr>
+              <tr><td class="cfg">E-mail corporativo</td><td>Sim — e deixe claro que é corporativo, isso já filtra curioso</td></tr>
+              <tr><td class="cfg">Empresa</td><td>Sim — permite pesquisar quem é antes de responder</td></tr>
+              <tr><td class="cfg">Cargo</td><td>Sim — diferencia o Diretor que decide do estagiário pesquisando</td></tr>
+              <tr><td class="cfg">Telefone</td><td>Opcional — obrigatório derruba bastante a conversão</td></tr>
+              <tr><td class="cfg">"Qual seu principal desafio hoje?"</td><td>Vale muito — a resposta prepara a conversa comercial inteira</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="passo">
+        <h3>Crie a página de agradecimento</h3>
+        <p>Ao enviar o formulário, a pessoa precisa ir para uma página separada — não apenas ver uma mensagem na mesma tela.</p>
+        <p class="obs">Isso não é detalhe estético: é o que permite medir a conversão de forma confiável. Uma visita a <span class="caminho">/obrigado</span> é a prova de que alguém enviou o formulário.</p>
+      </div>
+
+      <div class="passo">
+        <h3>Instale o aviso de cookies</h3>
+        <p>Precisa permitir recusar, e as tags da Etapa 4 só devem disparar depois do aceite. Peça revisão da squad de Governance antes de publicar — a Obliant vende consultoria de LGPD, e uma página nossa rastreando sem consentimento seria encontrável justamente pelos prospects mais criteriosos.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="etapa"><span class="num">Etapa 3</span><span class="risco"></span></div>
+  <div class="section" id="contas">
+    <h2>Criar as contas</h2>
+    <p class="section-sub">Criar conta é gratuito nas duas plataformas. Só se cobra quando uma campanha é ativada — nada aqui gasta verba.</p>
+
+    <div class="passos">
+      <div class="passo">
+        <h3>Google Ads — e escape do modo simplificado</h3>
+        <p>Ao criar a conta em <b>ads.google.com</b>, o Google empurra um modo automático que esconde quase todos os controles. Ele parece mais fácil e é justamente o que impede você de aprender qualquer coisa com o piloto.</p>
+        <p>Procure durante a criação um link discreto do tipo <b>"Alternar para o modo especialista"</b> ou <b>"Criar conta sem campanha"</b>. Se não achar e a conta nascer no modo simplificado, dá para mudar depois nas configurações.</p>
+        <div class="armadilha"><b>Sinal de que você está no modo errado:</b> a plataforma não deixa escolher palavras-chave nem ver relatório de termos de busca. Sem isso, não há como negativar desperdício.</div>
+      </div>
+
+      <div class="passo">
+        <h3>Google Analytics — criar a propriedade</h3>
+        <p>Em <b>analytics.google.com</b>, crie uma propriedade para o site e um fluxo de dados web. Ao final ele mostra um identificador no formato <b>G-XXXXXXXXXX</b>.</p>
+        <div class="caminho">Administrador → Fluxos de dados → Web</div>
+        <p class="obs">Guarde esse código — ele é usado na Etapa 4.</p>
+      </div>
+
+      <div class="passo">
+        <h3>LinkedIn Campaign Manager</h3>
+        <p>Em <b>linkedin.com/campaignmanager</b>, crie uma conta de anúncios e vincule à página da Obliant. Você precisa ter permissão de administrador da página — se não tiver, peça a quem administra antes de continuar.</p>
+      </div>
+
+      <div class="passo">
+        <h3>Configure a forma de pagamento e um limite</h3>
+        <p>Cadastre o cartão nas duas plataformas e, no Google, defina também um <b>limite de gasto da conta</b>, além do orçamento diário da campanha.</p>
+        <div class="armadilha"><b>Por que o limite duplo importa:</b> o Google pode gastar até o dobro do orçamento diário em dias de muito volume, compensando nos dias fracos. O limite de conta é a trava que garante que o mês não estoure.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="etapa"><span class="num">Etapa 4</span><span class="risco"></span></div>
+  <div class="section" id="medicao">
+    <h2>Instalar e testar a medição</h2>
+    <p class="section-sub">Esta é a etapa que a maioria pula e depois lamenta. Sem ela, você paga por cliques e nunca descobre quais valeram a pena.</p>
+
+    <div class="passos">
+      <div class="passo">
+        <h3>Crie a ação de conversão no Google Ads</h3>
+        <div class="caminho">Ferramentas → Medição → Conversões → Nova ação de conversão</div>
+        <p>Escolha <b>Site</b>, e como acionador use a visita à página de agradecimento criada na Etapa 2. Ao salvar, o Google fornece dois identificadores: um começando com <b>AW-</b> e um rótulo de conversão.</p>
+      </div>
+
+      <div class="passo">
+        <h3>Crie a conversão no LinkedIn</h3>
+        <div class="caminho">Análises → Rastreamento de conversões → Criar conversão</div>
+        <p>Mesma lógica: a conversão acontece quando alguém chega na página de agradecimento. Anote o identificador gerado.</p>
+      </div>
+
+      <div class="passo">
+        <h3>Instale as três tags na página</h3>
+        <p>Os códigos prontos, com o lugar exato de colar cada um, estão no guia do mecanismo — não vale a pena duplicá-los aqui e correr o risco de as duas versões divergirem.</p>
+        <p><a href="#codigos" onclick="irPara(&#39;codigos&#39;);return false;" style="color:var(--accent);font-weight:600">Abrir os códigos de rastreamento →</a></p>
+      </div>
+
+      <div class="passo">
+        <h3>Teste de verdade, antes de qualquer campanha</h3>
+        <p>Instalar não é o mesmo que funcionar. Faça o teste completo:</p>
+        <p class="obs">1. Instale a extensão <b>Google Tag Assistant</b> no navegador e abra a landing page — ela deve identificar as tags.<br>
+        2. Abra o <b>DebugView</b> no Google Analytics e navegue pela página; os eventos devem aparecer ao vivo.<br>
+        3. <b>Preencha e envie o formulário você mesma.</b> Confirme três coisas: chegou na página de agradecimento, o registro apareceu no destino combinado, e a conversão foi contabilizada nas plataformas — isso pode levar algumas horas para refletir.</p>
+        <div class="armadilha"><b>Não pule este passo.</b> Uma conversão que não registra é pior do que não ter tag nenhuma: a plataforma otimiza para o público errado, e você acredita nos dados.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="etapa"><span class="num">Etapa 5</span><span class="risco"></span></div>
+  <div class="section" id="google">
+    <h2>Montar a campanha do Google</h2>
+    <p class="section-sub">Comece por aqui, não pelo LinkedIn — clique mais barato e público com intenção declarada testam a landing page com menos dinheiro.</p>
+
+    <div class="passos">
+      <div class="passo">
+        <h3>Levante as palavras-chave</h3>
+        <div class="caminho">Ferramentas → Planejamento → Planejador de palavras-chave</div>
+        <p>Digite os termos que você imagina que alguém buscaria e veja o que a ferramenta sugere, com o volume estimado de buscas.</p>
+        <p class="obs">Pontos de partida para PMO e PMGO: consultoria em gestão de projetos, PMO terceirizado, escritório de projetos, consultoria implantação ERP, gestão de portfólio de projetos, governança de projetos.</p>
+        <div class="armadilha"><b>Prepare-se para o volume ser baixo.</b> Termos B2B específicos têm poucas buscas no Brasil — é normal e não significa que a campanha está errada. Significa que o Google sozinho não vai gastar muito, o que é uma informação valiosa em si.</div>
+      </div>
+
+      <div class="passo">
+        <h3>Crie a campanha com as configurações certas</h3>
+        <p>Escolha o objetivo <b>Leads</b> e o tipo <b>Pesquisa</b>. Depois ajuste os pontos abaixo — cada um deles é um desperdício conhecido quando fica no padrão.</p>
+        <div class="tblwrap">
+          <table class="campos">
+            <thead><tr><th>Configuração</th><th>O que fazer e por quê</th></tr></thead>
+            <tbody>
+              <tr><td class="cfg">Redes</td><td><b>Desmarque a Rede de Display e os parceiros de pesquisa.</b> Vêm marcados por padrão e gastam a verba em sites aleatórios, com resultado muito pior.</td></tr>
+              <tr><td class="cfg">Localização</td><td>Escolha as regiões onde a Obliant atende. Nas opções avançadas, selecione <b>"presença: pessoas no local"</b> — o padrão inclui quem apenas demonstrou interesse na região.</td></tr>
+              <tr><td class="cfg">Idioma</td><td>Português.</td></tr>
+              <tr><td class="cfg">Lances</td><td>Comece com <b>maximizar cliques com limite de CPC</b>. As estratégias automáticas por conversão precisam de histórico que você ainda não tem.</td></tr>
+              <tr><td class="cfg">Orçamento</td><td>O valor definido na divisão de verba, dividido por 30.</td></tr>
+              <tr><td class="cfg">Campanhas</td><td>Uma para PMGO e outra para PMO, separadas — é o que permite comparar depois.</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="passo">
+        <h3>Configure as palavras-chave e as negativas</h3>
+        <p>Use correspondência <b>de frase</b> e <b>exata</b> no início. A correspondência ampla alcança muito mais gente e desperdiça muito mais — deixe para quando houver histórico.</p>
+        <p>Adicione desde já uma lista de palavras negativas:</p>
+        <p class="obs">curso, cursos, grátis, gratuito, vaga, vagas, emprego, salário, o que é, significado, PDF, modelo, template, TCC, monografia, certificação, concurso.</p>
+      </div>
+
+      <div class="passo">
+        <h3>Escreva os anúncios</h3>
+        <p>Faça <b>três anúncios por grupo</b>, para a plataforma testar entre eles. O título precisa conter a palavra que a pessoa buscou — é isso que faz a nota de relevância subir e o clique custar menos.</p>
+        <div class="modelo">
+          <div class="mt">Exemplo de anúncio</div>
+          <div class="linha"><span class="rot">Título 1</span>PMO Terceirizado para Sua Empresa</div>
+          <div class="linha"><span class="rot">Título 2</span>Governança de Projetos com Especialistas</div>
+          <div class="linha"><span class="rot">Título 3</span>Diagnóstico Inicial em 30 Minutos</div>
+          <div class="linha"><span class="rot">Descrição</span>Seus projetos atrasam sem que ninguém saiba por quê? Estruture cronograma, risco e priorização com quem faz isso há anos. Fale com um especialista.</div>
+        </div>
+        <p class="obs">Acrescente as extensões de sitelink, frase de destaque e chamada. São gratuitas, aumentam o tamanho do anúncio na tela e melhoram a taxa de clique.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="etapa"><span class="num">Etapa 6</span><span class="risco"></span></div>
+  <div class="section" id="linkedin">
+    <h2>Montar a campanha do LinkedIn</h2>
+    <p class="section-sub">Só depois que o Google mostrar que a landing page converte. Aqui o clique é bem mais caro — vale pagar quando a página já provou funcionar.</p>
+
+    <div class="passos">
+      <div class="passo">
+        <h3>Crie a campanha</h3>
+        <p>Objetivo <b>Conversões no site</b> — não "visualizações" nem "engajamento", que otimizam para quem clica sem intenção de contratar.</p>
+      </div>
+
+      <div class="passo">
+        <h3>Monte o público</h3>
+        <p>Combine três filtros, sem exagerar no detalhamento:</p>
+        <div class="tblwrap">
+          <table class="campos">
+            <thead><tr><th>Filtro</th><th>O que colocar</th></tr></thead>
+            <tbody>
+              <tr><td class="cfg">Cargo</td><td>Diretor e Gerente de Operações, TI, Projetos e Transformação</td></tr>
+              <tr><td class="cfg">Setor</td><td>Os setores onde a Obliant já tem experiência — indústria, mineração, energia, logística, saúde, varejo</td></tr>
+              <tr><td class="cfg">Porte</td><td>Empresas com mais de 200 funcionários, onde o problema de governança realmente existe</td></tr>
+              <tr><td class="cfg">Local</td><td>Brasil, ou as regiões de atuação</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="armadilha"><b>Cuidado com o público pequeno demais.</b> Se somar poucos milhares de pessoas, o custo dispara e a mesma pessoa vê o anúncio muitas vezes. E <b>desmarque a expansão automática de público</b> — ela vem ligada e desmancha silenciosamente a segmentação que você acabou de montar.</div>
+      </div>
+
+      <div class="passo">
+        <h3>Escolha o formato e escreva o anúncio</h3>
+        <p>Use <b>imagem única</b> no primeiro teste — é o formato mais simples de produzir e o mais fácil de interpretar.</p>
+        <p>O texto precisa funcionar para quem <b>não estava procurando nada</b>. Abrir com o problema, não com a Obliant.</p>
+        <div class="modelo">
+          <div class="mt">Exemplo de anúncio</div>
+          <div class="linha"><span class="rot">Texto</span>Vários projetos ao mesmo tempo, e nenhuma visão clara de qual vai atrasar primeiro? É o cenário mais comum em empresas que crescem rápido — e o mais caro quando ninguém percebe a tempo.</div>
+          <div class="linha"><span class="rot">Título</span>Governança de projetos que a diretoria enxerga</div>
+          <div class="linha"><span class="rot">Botão</span>Saiba mais</div>
+        </div>
+      </div>
+
+      <div class="passo">
+        <h3>Defina orçamento e prazo</h3>
+        <p>Respeite o mínimo diário da plataforma e concentre a verba num período definido, em vez de espalhar pouco por muito tempo. Duas semanas com verba concentrada ensinam mais do que dois meses no mínimo possível.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="etapa"><span class="num">Etapa 7</span><span class="risco"></span></div>
+  <div class="section" id="ligar">
+    <h2>Ligar e acompanhar</h2>
+    <p class="section-sub">A parte contraintuitiva: nos primeiros dias, o trabalho é resistir à vontade de mexer.</p>
+
+    <div class="passos">
+      <div class="passo">
+        <h3>Confira o checklist antes de ativar</h3>
+        <p>São oito itens, e cada um já custou verba desperdiçada para alguém.</p>
+        <p><a href="#checklist" onclick="irPara(&#39;checklist&#39;);return false;" style="color:var(--accent);font-weight:600">Abrir o checklist →</a></p>
+      </div>
+
+      <div class="passo">
+        <h3>Ative e não toque por sete dias</h3>
+        <p>As plataformas passam por uma fase de aprendizado, testando combinações. <b>Cada alteração reinicia esse período.</b> Mexer no terceiro dia porque "está caro" é o erro mais comum de quem começa — e o que mais atrasa o aprendizado.</p>
+        <p class="obs">Nesses primeiros dias, olhe apenas duas coisas: está entregando impressões, e as conversões estão sendo registradas quando alguém preenche.</p>
+      </div>
+
+      <div class="passo">
+        <h3>A partir da segunda semana, entre na rotina</h3>
+        <p>O que revisar em cada periodicidade está detalhado no guia do mecanismo.</p>
+        <p><a href="#rotina" onclick="irPara(&#39;rotina&#39;);return false;" style="color:var(--accent);font-weight:600">Abrir a rotina de acompanhamento →</a></p>
+      </div>
+
+      <div class="passo">
+        <h3>Ao fim do piloto, substitua as estimativas</h3>
+        <p>Depois de 30 a 60 dias você terá custo por lead e taxa de fechamento <b>reais</b>. Leve esses números de volta à proposta e recalcule — é assim que a próxima decisão de verba deixa de ser baseada em referência de mercado e passa a ser baseada na Obliant.</p>
+        <p><a href="https://obliant.github.io/proposta-trafego-pago/" style="color:var(--accent);font-weight:600">Abrir a proposta com o simulador →</a></p>
+      </div>
+    </div>
+
+    <div class="callout">
+      <p><b>Se em algum ponto travar:</b> contratar um especialista para revisar a configuração antes de ativar é um gasto pequeno perto do risco de rodar semanas com algo mal configurado. Vocês não precisam virar especialistas em mídia paga para fazer isso funcionar — precisam saber o suficiente para não serem levadas no colo, e este documento cobre isso.</p>
+    </div>
+  </div>
+
+  <div class="footnote">
+    Material interno da squad Omnichannel · o porquê de cada escolha está na aba <a href="#" onclick="trocarAba('como');return false;">Como funciona</a>. Ver também a <a href="https://obliant.github.io/estrategia-omnichannel/">estratégia</a> e a <a href="https://obliant.github.io/proposta-trafego-pago/">proposta</a>.<br>
+    As interfaces das plataformas mudam com frequência — se um caminho não bater, procure pela função descrita, não pelo nome exato do botão.
+  </div>
+  </div><!-- fim tabPasso -->
 </div>
 
 <button class="voltar" id="voltar" type="button">↑ Voltar ao índice</button>
 
 <script>
+// Troca de aba. Exposta no escopo global porque os links do passo a passo
+// que apontam para secoes da outra aba chamam irPara() direto no onclick.
+function trocarAba(qual, subirTopo) {
+  document.querySelectorAll('.aba').forEach(function (b) {
+    b.classList.toggle('ativa', b.dataset.aba === qual);
+  });
+  document.getElementById('tabComo').style.display  = (qual === 'como')  ? '' : 'none';
+  document.getElementById('tabPasso').style.display = (qual === 'passo') ? '' : 'none';
+  if (subirTopo !== false) window.scrollTo(0, 0);
+}
+
+// Usado pelos links cruzados: vai para a aba "Como funciona" e desce ate a secao.
+function irPara(secao) {
+  trocarAba('como', false);
+  var alvo = document.getElementById(secao);
+  if (alvo) alvo.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+document.querySelectorAll('.aba').forEach(function (b) {
+  b.addEventListener('click', function () { trocarAba(b.dataset.aba); });
+});
+
 (function () {
   var btn = document.getElementById('voltar');
-  var indice = document.querySelector('.indice');
+  function indiceVisivel() {
+    var passo = document.getElementById('tabPasso');
+    var naAbaPasso = passo && passo.style.display !== 'none';
+    return document.querySelector(naAbaPasso ? '.indice-passo' : '.indice');
+  }
   btn.addEventListener('click', function () {
-    indice.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    var alvo = indiceVisivel();
+    if (alvo) alvo.scrollIntoView({ behavior: 'smooth', block: 'start' });
   });
   window.addEventListener('scroll', function () {
-    var passou = window.scrollY > (indice.offsetTop + indice.offsetHeight);
-    btn.classList.toggle('ver', passou);
+    var alvo = indiceVisivel();
+    if (!alvo) return;
+    btn.classList.toggle('ver', window.scrollY > (alvo.offsetTop + alvo.offsetHeight));
   }, { passive: true });
 })();
 
