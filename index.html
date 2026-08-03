@@ -42,6 +42,28 @@
   .section-sub{font-size:13.5px;color:var(--muted);margin:0 0 22px;max-width:62ch;line-height:1.55}
   .section{margin-bottom:52px}
 
+  /* ---------- Indice ---------- */
+  .indice{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:24px 26px;margin:32px 0 48px}
+  .indice > .titulo{font-family:var(--font-mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);margin-bottom:18px}
+  .igrupo + .igrupo{margin-top:20px;padding-top:20px;border-top:1px solid var(--line)}
+  .igrupo > .gnome{font-size:11.5px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:var(--muted);margin-bottom:10px}
+  .igrupo ol{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:9px}
+  .igrupo li{display:grid;grid-template-columns:1fr auto;gap:14px;align-items:baseline}
+  .igrupo a{color:var(--ink);text-decoration:none;font-size:14px;font-weight:600;border-bottom:1px solid transparent}
+  .igrupo a:hover{color:var(--accent);border-bottom-color:var(--accent)}
+  .igrupo .oque{font-size:12px;color:var(--muted);text-align:right;line-height:1.4}
+  @media (max-width:640px){
+    .igrupo li{grid-template-columns:1fr;gap:3px}
+    .igrupo .oque{text-align:left}
+  }
+
+  /* ---------- Divisor de parte ---------- */
+  .parte{display:flex;align-items:center;gap:14px;margin:0 0 30px}
+  .parte .num{font-family:var(--font-mono);font-size:10.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--paper);background:var(--ink);padding:5px 12px;border-radius:999px;white-space:nowrap}
+  .parte .nome{font-family:var(--font-head);font-size:16px;color:var(--muted)}
+  .parte .risco{flex:1;height:1px;background:var(--line)}
+  .section{scroll-margin-top:24px}
+
   .flow{display:flex;flex-direction:column;gap:0}
   .fstep{display:grid;grid-template-columns:38px 1fr;gap:16px;padding:16px 0;border-top:1px solid var(--line)}
   .fstep:first-child{border-top:0}
@@ -143,7 +165,46 @@
   <h1>Como a engrenagem funciona por dentro.</h1>
   <p class="lede">O que acontece entre alguém clicar num anúncio e a squad saber que aquilo virou oportunidade — <b>e o que precisa estar instalado</b> para que essa história seja medida. Este guia cobre a operação e o código.</p>
 
-  <div class="section">
+  <div class="indice">
+    <div class="titulo">Neste guia</div>
+
+    <div class="igrupo">
+      <div class="gnome">Parte 1 · Entender a engrenagem</div>
+      <ol>
+        <li><a href="#engrenagem">A engrenagem, em seis estágios</a><span class="oque">O caminho da busca até o lead</span></li>
+        <li><a href="#anatomia">Anatomia de uma conta</a><span class="oque">Como se organiza campanha e anúncio</span></li>
+        <li><a href="#plataformas">Google e LinkedIn</a><span class="oque">Por que não se comparam direto</span></li>
+        <li><a href="#vocabulario">Vocabulário dos painéis</a><span class="oque">CTR, lance, negativação, frequência</span></li>
+      </ol>
+    </div>
+
+    <div class="igrupo">
+      <div class="gnome">Parte 2 · Planejar a execução</div>
+      <ol>
+        <li><a href="#quando">O que espera a aprovação</a><span class="oque">E o que já pode começar hoje</span></li>
+        <li><a href="#rotina">A rotina depois de ligar</a><span class="oque">O que fazer por período</span></li>
+      </ol>
+    </div>
+
+    <div class="igrupo">
+      <div class="gnome">Parte 3 · Instalar e medir</div>
+      <ol>
+        <li><a href="#codigos">Os códigos de rastreamento</a><span class="oque">GA4, Google Ads e LinkedIn, prontos</span></li>
+        <li><a href="#consentimento">Consentimento e LGPD</a><span class="oque">Por que pesa mais para a Obliant</span></li>
+      </ol>
+    </div>
+
+    <div class="igrupo">
+      <div class="gnome">Fecho</div>
+      <ol>
+        <li><a href="#checklist">Antes de ligar a primeira campanha</a><span class="oque">Checklist de oito itens</span></li>
+      </ol>
+    </div>
+  </div>
+
+  <div class="parte"><span class="num">Parte 1</span><span class="nome">Entender a engrenagem</span><span class="risco"></span></div>
+
+  <div class="section" id="engrenagem">
     <h2>A engrenagem, em seis estágios</h2>
     <p class="section-sub">Cada estágio depende do anterior. Se um deles estiver quebrado, a verba continua saindo e você não percebe.</p>
     <div class="flow">
@@ -207,7 +268,7 @@
     </div>
   </div>
 
-  <div class="section">
+  <div class="section" id="anatomia">
     <h2>Anatomia de uma conta</h2>
     <p class="section-sub">A hierarquia é igual nas duas plataformas, muda o nome das peças. Entender isso evita a confusão mais comum: misturar tudo numa campanha só.</p>
     <div class="tree">
@@ -222,7 +283,7 @@
     </div>
   </div>
 
-  <div class="section">
+  <div class="section" id="plataformas">
     <h2>As duas plataformas operam por lógicas opostas</h2>
     <p class="section-sub">É por isso que a mesma campanha não serve para as duas, e que os resultados não devem ser comparados diretamente.</p>
     <div class="duo">
@@ -252,7 +313,7 @@
     </div>
   </div>
 
-  <div class="section">
+  <div class="section" id="vocabulario">
     <h2>Vocabulário que aparece nos painéis</h2>
     <div class="tblwrap">
       <table>
@@ -273,7 +334,52 @@
     </div>
   </div>
 
-  <div class="section">
+  <div class="parte"><span class="num">Parte 2</span><span class="nome">Planejar a execução</span><span class="risco"></span></div>
+
+  <div class="section" id="quando">
+    <h2>O que espera a aprovação e o que não espera</h2>
+    <p class="section-sub">A proposta em análise pela diretoria define <b>quanto</b> será investido em mídia. Quase toda a construção, porém, não consome verba nenhuma — só horas da squad.</p>
+
+    <div class="trilhas">
+      <div class="trilha agora">
+        <span class="selo">Pode começar agora</span>
+        <h3>Fundação e estrutura</h3>
+        <p>Nada aqui gasta um centavo em mídia. Criar contas no Google Ads e no LinkedIn Campaign Manager é gratuito — cobra-se apenas quando uma campanha é ativada.</p>
+        <ul>
+          <li><b>Landing page por produto</b> — PMGO e PMO</li>
+          <li><b>Rastreamento instalado e testado</b> — GA4 e as tags de conversão</li>
+          <li><b>Aviso de cookies</b> revisado pela squad de Governance</li>
+          <li><b>Destino do lead definido</b> — onde cai, quem responde, em quanto tempo</li>
+          <li><b>Pesquisa de palavras-chave</b> e lista inicial de negativas</li>
+          <li><b>Públicos montados</b> no LinkedIn por cargo, setor e porte</li>
+          <li><b>Textos dos anúncios</b> escritos a partir do posicionamento</li>
+          <li><b>Criativo de topo de funil</b> produzido</li>
+        </ul>
+        <div class="nota">Tudo isso fica salvo nas plataformas como rascunho, pronto para ser ativado.</div>
+      </div>
+
+      <div class="trilha depois">
+        <span class="selo">Depende da aprovação</span>
+        <h3>Veiculação e leitura</h3>
+        <p>O que a decisão da diretoria realmente destrava é o momento em que a verba começa a sair — e o aprendizado que só existe com campanha no ar.</p>
+        <ul>
+          <li><b>Definir o orçamento diário</b> conforme o cenário escolhido</li>
+          <li><b>Ativar as campanhas</b></li>
+          <li><b>Piloto de 30 a 60 dias</b>, sem otimizar na primeira semana</li>
+          <li><b>Medir CPL e taxa de fechamento reais</b>, substituindo as referências de mercado</li>
+          <li><b>Redistribuir verba</b> entre plataformas e produtos com base no que apareceu</li>
+        </ul>
+        <div class="nota">Só a partir daqui existem números próprios — antes disso, toda projeção é estimativa.</div>
+      </div>
+    </div>
+
+    <div class="callout">
+      <p><b>Por que isso importa para o prazo:</b> se a fundação estiver pronta quando a aprovação sair, a campanha entra no ar em dias, não em semanas. Se a decisão demorar ou for negativa, o trabalho não se perde — <b>uma landing page dedicada por produto melhora a conversão do tráfego orgânico que já existe hoje</b>, que é exatamente o KR 1.1.1 da squad (conversão ≥3% e 3 leads/mês).</p>
+      <p>Ou seja: construir antes da resposta não é aposta. É a única parte do plano que rende independentemente do resultado da conversa com a diretoria.</p>
+    </div>
+  </div>
+
+  <div class="section" id="rotina">
     <h2>A rotina depois que a campanha liga</h2>
     <p class="section-sub">O erro mais comum não é errar a configuração inicial — é mexer demais nos primeiros dias.</p>
     <div class="tblwrap">
@@ -289,7 +395,9 @@
     </div>
   </div>
 
-  <div class="section">
+  <div class="parte"><span class="num">Parte 3</span><span class="nome">Instalar e medir</span><span class="risco"></span></div>
+
+  <div class="section" id="codigos">
     <h2>Os códigos de rastreamento</h2>
     <p class="section-sub">São três instalações. As duas primeiras compartilham a mesma base do Google; a terceira é independente. Substitua os trechos destacados pelos identificadores reais das contas.</p>
 
@@ -391,7 +499,7 @@ document.getElementById('<span class="ph">formulario-contato</span>').addEventLi
     </div>
   </div>
 
-  <div class="section">
+  <div class="section" id="consentimento">
     <h2>Consentimento — atenção redobrada aqui</h2>
     <p class="section-sub">Este ponto é mais sensível para a Obliant do que para a maioria das empresas.</p>
     <div class="callout">
@@ -401,50 +509,9 @@ document.getElementById('<span class="ph">formulario-contato</span>').addEventLi
     </div>
   </div>
 
-  <div class="section">
-    <h2>O que espera a aprovação e o que não espera</h2>
-    <p class="section-sub">A proposta em análise pela diretoria define <b>quanto</b> será investido em mídia. Quase toda a construção, porém, não consome verba nenhuma — só horas da squad.</p>
+  <div class="parte"><span class="num">Fecho</span><span class="nome">Conferir antes de ligar</span><span class="risco"></span></div>
 
-    <div class="trilhas">
-      <div class="trilha agora">
-        <span class="selo">Pode começar agora</span>
-        <h3>Fundação e estrutura</h3>
-        <p>Nada aqui gasta um centavo em mídia. Criar contas no Google Ads e no LinkedIn Campaign Manager é gratuito — cobra-se apenas quando uma campanha é ativada.</p>
-        <ul>
-          <li><b>Landing page por produto</b> — PMGO e PMO</li>
-          <li><b>Rastreamento instalado e testado</b> — GA4 e as tags de conversão</li>
-          <li><b>Aviso de cookies</b> revisado pela squad de Governance</li>
-          <li><b>Destino do lead definido</b> — onde cai, quem responde, em quanto tempo</li>
-          <li><b>Pesquisa de palavras-chave</b> e lista inicial de negativas</li>
-          <li><b>Públicos montados</b> no LinkedIn por cargo, setor e porte</li>
-          <li><b>Textos dos anúncios</b> escritos a partir do posicionamento</li>
-          <li><b>Criativo de topo de funil</b> produzido</li>
-        </ul>
-        <div class="nota">Tudo isso fica salvo nas plataformas como rascunho, pronto para ser ativado.</div>
-      </div>
-
-      <div class="trilha depois">
-        <span class="selo">Depende da aprovação</span>
-        <h3>Veiculação e leitura</h3>
-        <p>O que a decisão da diretoria realmente destrava é o momento em que a verba começa a sair — e o aprendizado que só existe com campanha no ar.</p>
-        <ul>
-          <li><b>Definir o orçamento diário</b> conforme o cenário escolhido</li>
-          <li><b>Ativar as campanhas</b></li>
-          <li><b>Piloto de 30 a 60 dias</b>, sem otimizar na primeira semana</li>
-          <li><b>Medir CPL e taxa de fechamento reais</b>, substituindo as referências de mercado</li>
-          <li><b>Redistribuir verba</b> entre plataformas e produtos com base no que apareceu</li>
-        </ul>
-        <div class="nota">Só a partir daqui existem números próprios — antes disso, toda projeção é estimativa.</div>
-      </div>
-    </div>
-
-    <div class="callout">
-      <p><b>Por que isso importa para o prazo:</b> se a fundação estiver pronta quando a aprovação sair, a campanha entra no ar em dias, não em semanas. Se a decisão demorar ou for negativa, o trabalho não se perde — <b>uma landing page dedicada por produto melhora a conversão do tráfego orgânico que já existe hoje</b>, que é exatamente o KR 1.1.1 da squad (conversão ≥3% e 3 leads/mês).</p>
-      <p>Ou seja: construir antes da resposta não é aposta. É a única parte do plano que rende independentemente do resultado da conversa com a diretoria.</p>
-    </div>
-  </div>
-
-  <div class="section">
+  <div class="section" id="checklist">
     <h2>Antes de ligar a primeira campanha</h2>
     <p class="section-sub">Cada item aqui já causou desperdício de verba em campanha de alguém.</p>
     <div class="checklist">
