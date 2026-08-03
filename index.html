@@ -127,6 +127,13 @@
   .trilha li b{font-weight:600}
   .trilha .nota{margin-top:14px;padding-top:12px;border-top:1px solid var(--line);font-size:12px;line-height:1.55;color:var(--muted)}
 
+  /* ---------- Voltar ao indice ---------- */
+  .voltar{position:fixed;right:20px;bottom:20px;z-index:60;font-family:var(--font-body);font-size:12.5px;font-weight:600;padding:10px 16px;border-radius:999px;border:1px solid var(--line);background:var(--panel);color:var(--ink);cursor:pointer;box-shadow:0 4px 14px rgba(15,23,42,.14);opacity:0;pointer-events:none;transition:opacity .2s}
+  .voltar.ver{opacity:1;pointer-events:auto}
+  .voltar:hover{border-color:var(--accent);color:var(--accent)}
+  .voltar:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+  @media print{.voltar{display:none}}
+
   .checklist{display:flex;flex-direction:column;gap:9px}
   .chk{display:grid;grid-template-columns:auto 1fr;gap:12px;align-items:baseline;background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:12px 15px}
   .chk .box{width:15px;height:15px;border:1.5px solid var(--muted);border-radius:4px;align-self:center}
@@ -182,6 +189,7 @@
       <div class="gnome">Parte 2 · Planejar a execução</div>
       <ol>
         <li><a href="#quando">O que espera a aprovação</a><span class="oque">E o que já pode começar hoje</span></li>
+        <li><a href="#verba">Como dividir a verba</a><span class="oque">Google e LinkedIn, com R$ 3.000</span></li>
         <li><a href="#rotina">A rotina depois de ligar</a><span class="oque">O que fazer por período</span></li>
       </ol>
     </div>
@@ -379,6 +387,54 @@
     </div>
   </div>
 
+  <div class="section" id="verba">
+    <h2>Como dividir a verba entre as plataformas</h2>
+    <p class="section-sub">A pergunta que aparece assim que um valor é aprovado. A resposta depende do tamanho da verba — e abaixo de certo ponto, dividir é o erro.</p>
+
+    <div class="callout alerta">
+      <p><b>A restrição que muda tudo:</b> o LinkedIn exige um orçamento diário mínimo por campanha — algo na casa de US$ 10 por dia, o que dá por volta de R$ 1.700 por mês só para manter <i>uma</i> campanha rodando. O Google não tem mínimo. Confirme o valor vigente no Campaign Manager antes de fechar a conta, porque ele muda.</p>
+    </div>
+
+    <p class="section-sub" style="margin-top:22px">Com R$ 3.000, portanto, dividir ao meio deixaria o LinkedIn abaixo do mínimo operacional e o Google sem escala. Você teria dois testes fracos e nenhuma conclusão.</p>
+
+    <div class="tblwrap">
+      <table>
+        <thead><tr><th>Verba mensal</th><th>O que fazer</th></tr></thead>
+        <tbody>
+          <tr><td class="term">Até R$ 3.000</td><td><b>Um canal por vez, começando pelo Google.</b> Concentrar dá sinal claro; dividir dá ruído nos dois lados.</td></tr>
+          <tr><td class="term">R$ 3.000 a 6.000</td><td>Google rodando continuamente, e o LinkedIn em janelas de duas a três semanas, com verba concentrada para atingir volume de exibição relevante.</td></tr>
+          <tr><td class="term">Acima de R$ 6.000</td><td>Os dois em paralelo. Ponto de partida razoável: cerca de 60% no Google e 40% no LinkedIn, ajustando conforme os números reais aparecem.</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="duo" style="margin-top:22px">
+      <div class="duocard">
+        <div class="plat">Por que começar aqui</div>
+        <h3>Google primeiro</h3>
+        <dl>
+          <dt>Custo</dt><dd>Clique mais barato — a mesma verba compra muito mais visitas.</dd>
+          <dt>O que ele testa</dt><dd>Se a landing page converte. Quem chega do Google já reconheceu o problema e está procurando solução: é o tráfego mais fácil de converter que existe.</dd>
+          <dt>A lógica</dt><dd>Se a página não converte nem com esse público, não vai converter com tráfego frio. Descobrir isso custa menos aqui.</dd>
+        </dl>
+      </div>
+      <div class="duocard">
+        <div class="plat">Por que depois</div>
+        <h3>LinkedIn na sequência</h3>
+        <dl>
+          <dt>Custo</dt><dd>Clique bem mais caro. Precisa de mais verba para gerar volume que signifique alguma coisa.</dd>
+          <dt>O que ele resolve</dt><dd>Alcança o comprador econômico — o Diretor que nunca vai pesquisar "consultoria PMO" no Google, mas decide a compra.</dd>
+          <dt>A lógica</dt><dd>Faz sentido quando a página já provou que converte. Aí vale pagar caro para levar mais gente até ela.</dd>
+        </dl>
+      </div>
+    </div>
+
+    <div class="callout">
+      <p><b>O limite honesto do Google:</b> o volume de busca por termos como "PMO terceirizado" ou "consultoria implantação ERP" no Brasil é pequeno. É bem possível que a campanha não consiga gastar os R$ 3.000 inteiros — simplesmente não há gente suficiente buscando. Isso não é falha da campanha, é o tamanho do mercado de busca.</p>
+      <p>Quando isso acontecer, é o sinal de que chegou a hora do LinkedIn: não porque o Google falhou, mas porque a demanda que já existe foi capturada e o passo seguinte é criar demanda em quem ainda não procura.</p>
+    </div>
+  </div>
+
   <div class="section" id="rotina">
     <h2>A rotina depois que a campanha liga</h2>
     <p class="section-sub">O erro mais comum não é errar a configuração inicial — é mexer demais nos primeiros dias.</p>
@@ -532,7 +588,21 @@ document.getElementById('<span class="ph">formulario-contato</span>').addEventLi
   </div>
 </div>
 
+<button class="voltar" id="voltar" type="button">↑ Voltar ao índice</button>
+
 <script>
+(function () {
+  var btn = document.getElementById('voltar');
+  var indice = document.querySelector('.indice');
+  btn.addEventListener('click', function () {
+    indice.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
+  window.addEventListener('scroll', function () {
+    var passou = window.scrollY > (indice.offsetTop + indice.offsetHeight);
+    btn.classList.toggle('ver', passou);
+  }, { passive: true });
+})();
+
 document.querySelectorAll('.copybtn').forEach(function (btn) {
   btn.addEventListener('click', function () {
     var alvo = document.getElementById(btn.dataset.copy);
