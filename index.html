@@ -90,6 +90,21 @@
   .callout b{font-weight:600}
   .callout.alerta{border-left-color:#c98a2b}
 
+  .trilhas{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  .trilha{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:20px 22px}
+  .trilha.agora{border-color:var(--accent);border-width:2px}
+  .trilha .selo{display:inline-block;font-family:var(--font-mono);font-size:10px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:4px 10px;border-radius:999px;margin-bottom:12px}
+  .trilha.agora .selo{background:var(--accent-bright);color:#26300a}
+  .trilha.depois .selo{background:var(--panel-2);border:1px solid var(--line);color:var(--muted)}
+  .trilha h3{margin:0 0 6px}
+  .trilha > p{margin:0 0 14px;font-size:12.5px;line-height:1.55;color:var(--muted)}
+  .trilha ul{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:8px}
+  .trilha li{font-size:13px;line-height:1.5;padding-left:18px;position:relative}
+  .trilha li:before{content:"";position:absolute;left:0;top:7px;width:6px;height:6px;border-radius:50%;background:var(--accent-bright)}
+  .trilha.depois li:before{background:var(--line)}
+  .trilha li b{font-weight:600}
+  .trilha .nota{margin-top:14px;padding-top:12px;border-top:1px solid var(--line);font-size:12px;line-height:1.55;color:var(--muted)}
+
   .checklist{display:flex;flex-direction:column;gap:9px}
   .chk{display:grid;grid-template-columns:auto 1fr;gap:12px;align-items:baseline;background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:12px 15px}
   .chk .box{width:15px;height:15px;border:1.5px solid var(--muted);border-radius:4px;align-self:center}
@@ -101,6 +116,7 @@
   @media (max-width:760px){
     h1{font-size:27px}
     .duo{grid-template-columns:1fr}
+    .trilhas{grid-template-columns:1fr}
     .fstep{grid-template-columns:1fr}
     .fnum{display:none}
   }
@@ -382,6 +398,49 @@ document.getElementById('<span class="ph">formulario-contato</span>').addEventLi
       <p>Essas tags gravam cookies e enviam dados de comportamento para Google e LinkedIn. Sob a LGPD, isso exige base legal e informação clara ao titular — na prática, um aviso de cookies que permita recusar, e as tags só disparando após o aceite.</p>
       <p><b>Por que isso pesa mais aqui:</b> a Obliant vende consultoria de LGPD, DPO as a Service e Canal de Ética. Uma landing page nossa rastreando visitante sem consentimento seria uma contradição encontrável por qualquer prospect — e justamente pelos mais criteriosos, que são o público que queremos.</p>
       <p>Vale acionar a squad de Governance para revisar a página antes de publicar. É rápido e elimina um risco desproporcional ao tamanho da campanha.</p>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>O que espera a aprovação e o que não espera</h2>
+    <p class="section-sub">A proposta em análise pela diretoria define <b>quanto</b> será investido em mídia. Quase toda a construção, porém, não consome verba nenhuma — só horas da squad.</p>
+
+    <div class="trilhas">
+      <div class="trilha agora">
+        <span class="selo">Pode começar agora</span>
+        <h3>Fundação e estrutura</h3>
+        <p>Nada aqui gasta um centavo em mídia. Criar contas no Google Ads e no LinkedIn Campaign Manager é gratuito — cobra-se apenas quando uma campanha é ativada.</p>
+        <ul>
+          <li><b>Landing page por produto</b> — PMGO e PMO</li>
+          <li><b>Rastreamento instalado e testado</b> — GA4 e as tags de conversão</li>
+          <li><b>Aviso de cookies</b> revisado pela squad de Governance</li>
+          <li><b>Destino do lead definido</b> — onde cai, quem responde, em quanto tempo</li>
+          <li><b>Pesquisa de palavras-chave</b> e lista inicial de negativas</li>
+          <li><b>Públicos montados</b> no LinkedIn por cargo, setor e porte</li>
+          <li><b>Textos dos anúncios</b> escritos a partir do posicionamento</li>
+          <li><b>Criativo de topo de funil</b> produzido</li>
+        </ul>
+        <div class="nota">Tudo isso fica salvo nas plataformas como rascunho, pronto para ser ativado.</div>
+      </div>
+
+      <div class="trilha depois">
+        <span class="selo">Depende da aprovação</span>
+        <h3>Veiculação e leitura</h3>
+        <p>O que a decisão da diretoria realmente destrava é o momento em que a verba começa a sair — e o aprendizado que só existe com campanha no ar.</p>
+        <ul>
+          <li><b>Definir o orçamento diário</b> conforme o cenário escolhido</li>
+          <li><b>Ativar as campanhas</b></li>
+          <li><b>Piloto de 30 a 60 dias</b>, sem otimizar na primeira semana</li>
+          <li><b>Medir CPL e taxa de fechamento reais</b>, substituindo as referências de mercado</li>
+          <li><b>Redistribuir verba</b> entre plataformas e produtos com base no que apareceu</li>
+        </ul>
+        <div class="nota">Só a partir daqui existem números próprios — antes disso, toda projeção é estimativa.</div>
+      </div>
+    </div>
+
+    <div class="callout">
+      <p><b>Por que isso importa para o prazo:</b> se a fundação estiver pronta quando a aprovação sair, a campanha entra no ar em dias, não em semanas. Se a decisão demorar ou for negativa, o trabalho não se perde — <b>uma landing page dedicada por produto melhora a conversão do tráfego orgânico que já existe hoje</b>, que é exatamente o KR 1.1.1 da squad (conversão ≥3% e 3 leads/mês).</p>
+      <p>Ou seja: construir antes da resposta não é aposta. É a única parte do plano que rende independentemente do resultado da conversa com a diretoria.</p>
     </div>
   </div>
 
