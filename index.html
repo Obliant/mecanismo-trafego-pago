@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Omnichannel · Mecanismo operacional de tráfego pago</title>
+<style>
+  :root{
+    --ink:#12181F; --paper:#F3F4EF; --panel:#FFFFFF; --panel-2:#F8F9F5;
+    --accent:#748029; --accent-bright:#BCD848; --line:#DEE1D6; --muted:#5B6472;
+    --code-bg:#12181F; --code-ink:#E8EDDF; --code-dim:#8A93A5; --code-key:#BCD848;
+    --font-head:Georgia,'Iowan Old Style','Palatino Linotype',serif;
+    --font-body:-apple-system,BlinkMacSystemFont,'Segoe UI',system-ui,sans-serif;
+    --font-mono:ui-monospace,'SF Mono',Consolas,monospace;
+  }
+  @media (prefers-color-scheme: dark){
+    :root{ --ink:#EDEFE7; --paper:#12161C; --panel:#191F27; --panel-2:#1E2530; --accent:#BCD848; --accent-bright:#D6E878; --line:#2B323C; --muted:#9AA3AE; --code-bg:#0A0E14; }
+  }
+  :root[data-theme="dark"]{ --ink:#EDEFE7; --paper:#12161C; --panel:#191F27; --panel-2:#1E2530; --accent:#BCD848; --accent-bright:#D6E878; --line:#2B323C; --muted:#9AA3AE; --code-bg:#0A0E14; }
+  :root[data-theme="light"]{ --ink:#12181F; --paper:#F3F4EF; --panel:#FFFFFF; --panel-2:#F8F9F5; --accent:#748029; --accent-bright:#BCD848; --line:#DEE1D6; --muted:#5B6472; --code-bg:#12181F; }
+
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--font-body)}
+  h1,h2,h3{text-wrap:balance}
+  .doc{max-width:880px;margin:0 auto;padding:48px 28px 72px}
+
+  .masthead{display:flex;align-items:flex-end;justify-content:space-between;gap:20px;border-bottom:2px solid var(--ink);padding-bottom:18px;margin-bottom:28px;flex-wrap:wrap}
+  .brand{display:flex;align-items:center;gap:12px}
+  .mark{width:34px;height:34px;border-radius:8px;flex:0 0 auto}
+  .brand-text strong{display:block;font-family:var(--font-head);font-size:19px}
+  .brand-text span{display:block;font-size:12px;color:var(--muted);margin-top:1px}
+  .doctype{text-align:right}
+  .doctype .tag{font-family:var(--font-mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--accent)}
+  .doctype .date{font-size:12px;color:var(--muted);margin-top:3px}
+
+  h1{font-family:var(--font-head);font-weight:400;font-size:33px;line-height:1.16;margin:0 0 14px;max-width:22ch}
+  .lede{font-size:16px;line-height:1.65;color:var(--muted);max-width:64ch;margin:0 0 8px}
+  .lede b{color:var(--ink);font-weight:600}
+
+  h2{font-family:var(--font-head);font-weight:400;font-size:22px;margin:0 0 6px}
+  h3{font-family:var(--font-head);font-weight:400;font-size:17px;margin:0 0 8px}
+  .section-sub{font-size:13.5px;color:var(--muted);margin:0 0 22px;max-width:62ch;line-height:1.55}
+  .section{margin-bottom:52px}
+
+  .flow{display:flex;flex-direction:column;gap:0}
+  .fstep{display:grid;grid-template-columns:38px 1fr;gap:16px;padding:16px 0;border-top:1px solid var(--line)}
+  .fstep:first-child{border-top:0}
+  .fnum{font-family:var(--font-mono);font-size:12px;font-weight:700;color:var(--paper);background:var(--ink);width:28px;height:28px;border-radius:50%;display:grid;place-items:center;align-self:start}
+  .fstep h3{margin:2px 0 6px}
+  .fstep p{margin:0 0 8px;font-size:13.5px;line-height:1.6;color:var(--muted)}
+  .fstep p:last-child{margin-bottom:0}
+  .fstep b{color:var(--ink);font-weight:600}
+  .fwhere{display:inline-block;font-family:var(--font-mono);font-size:10px;text-transform:uppercase;letter-spacing:.06em;color:var(--accent);border:1px solid var(--accent);border-radius:999px;padding:3px 9px;margin-top:4px}
+
+  .tree{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:20px 24px;font-family:var(--font-mono);font-size:13px;line-height:2}
+  .tree .lvl0{font-weight:700}
+  .tree .ind1{padding-left:22px}
+  .tree .ind2{padding-left:44px}
+  .tree .ind3{padding-left:66px}
+  .tree .cm{color:var(--muted);font-size:11.5px}
+
+  .duo{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  .duocard{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:20px 22px}
+  .duocard .plat{font-family:var(--font-mono);font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--accent)}
+  .duocard dl{margin:12px 0 0;display:grid;gap:10px}
+  .duocard dt{font-size:11px;text-transform:uppercase;letter-spacing:.05em;color:var(--muted);font-weight:700}
+  .duocard dd{margin:2px 0 0;font-size:13px;line-height:1.55}
+
+  table{width:100%;border-collapse:collapse;font-size:13.5px;margin-top:8px}
+  th{text-align:left;font-size:10.5px;text-transform:uppercase;letter-spacing:.05em;color:var(--muted);font-weight:700;padding:0 12px 8px;border-bottom:1px solid var(--line)}
+  td{padding:11px 12px;border-bottom:1px solid var(--line);vertical-align:top;line-height:1.55}
+  td:first-child,th:first-child{padding-left:0}
+  .term{font-family:var(--font-mono);font-weight:600;white-space:nowrap;color:var(--accent)}
+  .tblwrap{overflow-x:auto}
+
+  .codeblock{margin-top:14px;border-radius:12px;overflow:hidden;border:1px solid var(--line)}
+  .codehead{display:flex;align-items:center;justify-content:space-between;gap:12px;background:var(--panel-2);padding:10px 14px;border-bottom:1px solid var(--line)}
+  .codehead .cname{font-family:var(--font-mono);font-size:11.5px;font-weight:700}
+  .codehead .cwhere{font-size:11px;color:var(--muted)}
+  .copybtn{font-family:var(--font-body);font-size:11.5px;font-weight:600;padding:5px 12px;border-radius:999px;border:1px solid var(--line);background:var(--panel);color:var(--ink);cursor:pointer;white-space:nowrap}
+  .copybtn:hover{border-color:var(--accent);color:var(--accent)}
+  pre{margin:0;background:var(--code-bg);color:var(--code-ink);padding:16px 18px;overflow-x:auto;font-family:var(--font-mono);font-size:12.5px;line-height:1.7}
+  code{font-family:inherit}
+  .ph{color:var(--code-key);font-weight:700}
+  .cmt{color:var(--code-dim)}
+
+  .callout{background:var(--panel);border:1px solid var(--line);border-left:4px solid var(--accent-bright);border-radius:0 12px 12px 0;padding:16px 20px;margin-top:16px}
+  .callout p{margin:0;font-size:13.5px;line-height:1.6}
+  .callout p + p{margin-top:8px}
+  .callout b{font-weight:600}
+  .callout.alerta{border-left-color:#c98a2b}
+
+  .checklist{display:flex;flex-direction:column;gap:9px}
+  .chk{display:grid;grid-template-columns:auto 1fr;gap:12px;align-items:baseline;background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:12px 15px}
+  .chk .box{width:15px;height:15px;border:1.5px solid var(--muted);border-radius:4px;align-self:center}
+  .chk .txt{font-size:13.5px;line-height:1.5}
+  .chk .txt b{font-weight:600}
+
+  .footnote{margin-top:48px;padding-top:20px;border-top:2px solid var(--ink);font-size:11.5px;color:var(--muted);line-height:1.6}
+
+  @media (max-width:760px){
+    h1{font-size:27px}
+    .duo{grid-template-columns:1fr}
+    .fstep{grid-template-columns:1fr}
+    .fnum{display:none}
+  }
+</style>
+</head>
+<body>
+
+<div class="doc">
+  <div class="masthead">
+    <div class="brand">
+      <svg class="mark" viewBox="0 0 64 64" role="img" aria-label="Obliant">
+        <rect width="64" height="64" rx="16" fill="#12181F"/>
+        <path d="M18 33c0-10.1 6.8-18 16.3-18 7.7 0 13.7 4.4 15.7 11.2h-9.1c-1.5-2.7-3.8-4.1-6.8-4.1-4.8 0-8.2 4.4-8.2 10.9s3.4 10.9 8.2 10.9c3 0 5.3-1.4 6.8-4.1H50C48 46.6 42 51 34.3 51 24.8 51 18 43.1 18 33Z" fill="#BCD848"/>
+        <path d="M36.5 26.2h12.3v13.6H36.5c3-1.8 4.7-4 4.7-6.8s-1.7-5-4.7-6.8Z" fill="#FFFDF5"/>
+      </svg>
+      <div class="brand-text"><strong>Obliant</strong><span>Squad Omnichannel</span></div>
+    </div>
+    <div class="doctype">
+      <div class="tag">Mecanismo operacional</div>
+      <div class="date">Guia interno · tráfego pago</div>
+    </div>
+  </div>
+
+  <h1>Como a engrenagem funciona por dentro.</h1>
+  <p class="lede">O que acontece entre alguém clicar num anúncio e a squad saber que aquilo virou oportunidade — <b>e o que precisa estar instalado</b> para que essa história seja medida. Este guia cobre a operação e o código.</p>
+
+  <div class="section">
+    <h2>A engrenagem, em seis estágios</h2>
+    <p class="section-sub">Cada estágio depende do anterior. Se um deles estiver quebrado, a verba continua saindo e você não percebe.</p>
+    <div class="flow">
+
+      <div class="fstep">
+        <div class="fnum">1</div>
+        <div>
+          <h3>Alguém demonstra um sinal</h3>
+          <p>No <b>Google</b>, o sinal é uma busca — a pessoa digitou "consultoria PMO" e revelou intenção. No <b>LinkedIn</b>, o sinal é quem ela é — cargo de Diretor de TI numa indústria de 500 funcionários. São gatilhos de natureza diferente: um é intenção declarada, o outro é perfil compatível.</p>
+          <span class="fwhere">Google Ads · LinkedIn Campaign Manager</span>
+        </div>
+      </div>
+
+      <div class="fstep">
+        <div class="fnum">2</div>
+        <div>
+          <h3>Um leilão decide se o anúncio aparece</h3>
+          <p>Você não compra posição fixa. A cada busca ou exibição acontece um leilão instantâneo entre anunciantes. Quem ganha não é necessariamente quem paga mais: as plataformas multiplicam o lance por uma nota de relevância. <b>Anúncio coerente com a busca e página de destino coerente com o anúncio fazem você pagar menos pelo mesmo lugar.</b></p>
+          <p>Por isso mandar todo mundo para a home do site é caro duas vezes: converte menos e ainda encarece o clique.</p>
+        </div>
+      </div>
+
+      <div class="fstep">
+        <div class="fnum">3</div>
+        <div>
+          <h3>A pessoa chega na landing page</h3>
+          <p>Página dedicada ao produto anunciado — PMGO ou PMO —, não o site institucional. Ela precisa entregar em segundos o que o anúncio prometeu, e ter um único caminho de ação. É aqui que ficam instaladas as tags do estágio 6.</p>
+          <span class="fwhere">Site · uma página por produto</span>
+        </div>
+      </div>
+
+      <div class="fstep">
+        <div class="fnum">4</div>
+        <div>
+          <h3>Ela preenche o formulário</h3>
+          <p>Quanto menos campos, mais gente conclui — mas menos você sabe sobre quem chegou. Para ticket alto, vale pedir empresa e cargo: um volume menor de contatos melhor qualificados é preferível a uma enxurrada de e-mails soltos.</p>
+          <p>O envio do formulário é o momento exato em que o <b>evento de conversão</b> precisa ser disparado. Sem isso, as plataformas não sabem quais anúncios funcionaram.</p>
+        </div>
+      </div>
+
+      <div class="fstep">
+        <div class="fnum">5</div>
+        <div>
+          <h3>O lead cai em algum lugar — e alguém é avisado</h3>
+          <p>Um formulário que só manda e-mail para uma caixa que ninguém abre desperdiça a verba inteira. Precisa estar definido antes de ligar a campanha: <b>onde o registro fica, quem responde e em quanto tempo.</b></p>
+          <p>Em venda consultiva de ticket alto, velocidade de resposta é decisiva — o interesse esfria em horas.</p>
+          <span class="fwhere">CRM ou planilha · com aviso</span>
+        </div>
+      </div>
+
+      <div class="fstep">
+        <div class="fnum">6</div>
+        <div>
+          <h3>A informação volta para a plataforma</h3>
+          <p>Esse é o estágio que fecha o ciclo e o mais esquecido. Quando o evento de conversão é disparado, Google e LinkedIn passam a saber quais palavras-chave, públicos e anúncios geraram contato — e usam isso para direcionar a verba sozinhos.</p>
+          <p><b>Sem as tags instaladas, a campanha fica cega:</b> você paga por cliques e nunca descobre quais valeram a pena.</p>
+          <span class="fwhere">GA4 · tags de conversão</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>Anatomia de uma conta</h2>
+    <p class="section-sub">A hierarquia é igual nas duas plataformas, muda o nome das peças. Entender isso evita a confusão mais comum: misturar tudo numa campanha só.</p>
+    <div class="tree">
+      <div class="lvl0">Conta</div>
+      <div class="ind1">└─ <b>Campanha</b> <span class="cm">— define objetivo, orçamento diário e período</span></div>
+      <div class="ind2">└─ <b>Grupo de anúncios</b> <span class="cm">— define PARA QUEM: palavras-chave (Google) ou público (LinkedIn)</span></div>
+      <div class="ind3">└─ <b>Anúncio</b> <span class="cm">— o que a pessoa vê: título, texto, imagem e link</span></div>
+    </div>
+    <div class="callout">
+      <p><b>A regra prática:</b> uma campanha por produto — uma para PMGO, outra para PMO. Assim o orçamento de cada um é controlado separadamente e dá para saber qual dos dois traz lead mais barato.</p>
+      <p>Dentro de cada campanha, um grupo de anúncios por tema de busca ou por perfil de público. É esse recorte que depois permite dizer "quem busca por implantação de ERP converte melhor do que quem busca por escritório de projetos".</p>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>As duas plataformas operam por lógicas opostas</h2>
+    <p class="section-sub">É por isso que a mesma campanha não serve para as duas, e que os resultados não devem ser comparados diretamente.</p>
+    <div class="duo">
+      <div class="duocard">
+        <div class="plat">Google Ads</div>
+        <h3>Você responde a uma pergunta</h3>
+        <dl>
+          <dt>Como se segmenta</dt><dd>Por palavra-chave — o que a pessoa digitou.</dd>
+          <dt>Estado mental</dt><dd>Já reconheceu o problema e está procurando solução.</dd>
+          <dt>Volume</dt><dd>Baixo. Poucas pessoas buscam "PMO terceirizado" por mês no Brasil.</dd>
+          <dt>Trabalho contínuo</dt><dd>Ver os termos reais que acionaram os anúncios e <b>negativar</b> os irrelevantes — quem procurava curso, vaga de emprego ou trabalho acadêmico.</dd>
+        </dl>
+      </div>
+      <div class="duocard">
+        <div class="plat">LinkedIn Ads</div>
+        <h3>Você interrompe com relevância</h3>
+        <dl>
+          <dt>Como se segmenta</dt><dd>Por atributo do perfil — cargo, setor, porte da empresa.</dd>
+          <dt>Estado mental</dt><dd>Não estava procurando nada. Você precisa despertar o interesse.</dd>
+          <dt>Volume</dt><dd>Alto, mas clique mais caro que o Google.</dd>
+          <dt>Trabalho contínuo</dt><dd>Vigiar a <b>frequência</b> — quantas vezes a mesma pessoa viu o anúncio. Repetição excessiva irrita e queima a marca com o público que mais importa.</dd>
+        </dl>
+      </div>
+    </div>
+    <div class="callout">
+      <p><b>Consequência para a leitura dos números:</b> é normal o Google trazer poucos contatos e mais qualificados, e o LinkedIn trazer mais volume e mais frio. Comparar os dois pelo custo por lead, isolado, leva à conclusão errada — o que interessa é o custo por <i>oportunidade real</i>, que só aparece semanas depois.</p>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>Vocabulário que aparece nos painéis</h2>
+    <div class="tblwrap">
+      <table>
+        <thead><tr><th>Termo</th><th>O que significa na prática</th></tr></thead>
+        <tbody>
+          <tr><td class="term">Impressão</td><td>Uma exibição do anúncio. Não significa que foi lido.</td></tr>
+          <tr><td class="term">CTR</td><td>Porcentagem de quem viu e clicou. Mede se o anúncio é atraente para aquele público.</td></tr>
+          <tr><td class="term">CPC</td><td>Custo por clique. Definido por leilão, muda ao longo do dia.</td></tr>
+          <tr><td class="term">Lance</td><td>Quanto você aceita pagar por clique ou por mil exibições. Pode ser manual ou automático.</td></tr>
+          <tr><td class="term">Índice de qualidade</td><td>Nota do Google para a relevância do conjunto anúncio + página. Nota boa reduz o custo.</td></tr>
+          <tr><td class="term">Correspondência</td><td>No Google, o quanto a busca pode fugir da sua palavra-chave. Ampla alcança mais e desperdiça mais; exata é o oposto.</td></tr>
+          <tr><td class="term">Negativação</td><td>Lista de termos que você proíbe de acionar seus anúncios. Manutenção semanal obrigatória.</td></tr>
+          <tr><td class="term">Frequência</td><td>Quantas vezes a mesma pessoa viu o anúncio. Relevante no LinkedIn.</td></tr>
+          <tr><td class="term">Conversão</td><td>A ação que você declarou como valiosa — aqui, o envio do formulário.</td></tr>
+          <tr><td class="term">Aprendizado</td><td>Fase inicial em que a plataforma testa combinações. Mexer nas configurações reinicia esse período.</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>A rotina depois que a campanha liga</h2>
+    <p class="section-sub">O erro mais comum não é errar a configuração inicial — é mexer demais nos primeiros dias.</p>
+    <div class="tblwrap">
+      <table>
+        <thead><tr><th>Quando</th><th>O que fazer</th></tr></thead>
+        <tbody>
+          <tr><td class="term">Dias 1 a 7</td><td>Conferir se está entregando e se as conversões estão sendo registradas. <b>Não otimizar.</b> A plataforma ainda está aprendendo, e cada alteração reinicia o processo.</td></tr>
+          <tr><td class="term">Semanal</td><td>Revisar os termos de busca reais e negativar o que veio errado. Conferir o ritmo de gasto.</td></tr>
+          <tr><td class="term">Quinzenal</td><td>Comparar desempenho entre grupos de anúncios. Pausar o que claramente não performa. Trocar criativo cansado no LinkedIn.</td></tr>
+          <tr><td class="term">Mensal</td><td>Olhar o que virou oportunidade comercial de verdade — não só lead. Redistribuir verba entre plataformas e produtos com base nisso.</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>Os códigos de rastreamento</h2>
+    <p class="section-sub">São três instalações. As duas primeiras compartilham a mesma base do Google; a terceira é independente. Substitua os trechos destacados pelos identificadores reais das contas.</p>
+
+    <div class="tblwrap">
+      <table>
+        <thead><tr><th>Identificador</th><th>Formato</th><th>Onde encontrar</th></tr></thead>
+        <tbody>
+          <tr><td class="term">GA4</td><td>G-XXXXXXXXXX</td><td>Google Analytics → Administrador → Fluxos de dados</td></tr>
+          <tr><td class="term">Google Ads</td><td>AW-XXXXXXXXX</td><td>Google Ads → Ferramentas → Conversões → Tag</td></tr>
+          <tr><td class="term">Rótulo de conversão</td><td>AbC-D_efGhIjK</td><td>Na mesma tela da ação de conversão criada</td></tr>
+          <tr><td class="term">LinkedIn</td><td>1234567</td><td>Campaign Manager → Análises → Insight Tag</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="codeblock">
+      <div class="codehead">
+        <div>
+          <div class="cname">1 · Google (GA4 + Google Ads)</div>
+          <div class="cwhere">Colar dentro do &lt;head&gt;, antes de fechar</div>
+        </div>
+        <button class="copybtn" type="button" data-copy="c1">Copiar</button>
+      </div>
+      <pre id="c1"><code><span class="cmt">&lt;!-- Google tag — serve ao GA4 e ao Google Ads ao mesmo tempo --&gt;</span>
+&lt;script async src="https://www.googletagmanager.com/gtag/js?id=<span class="ph">G-XXXXXXXXXX</span>"&gt;&lt;/script&gt;
+&lt;script&gt;
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', '<span class="ph">G-XXXXXXXXXX</span>');   <span class="cmt">// GA4</span>
+  gtag('config', '<span class="ph">AW-XXXXXXXXX</span>');   <span class="cmt">// Google Ads</span>
+&lt;/script&gt;</code></pre>
+    </div>
+
+    <div class="codeblock">
+      <div class="codehead">
+        <div>
+          <div class="cname">2 · LinkedIn Insight Tag</div>
+          <div class="cwhere">Colar antes de fechar o &lt;body&gt;</div>
+        </div>
+        <button class="copybtn" type="button" data-copy="c2">Copiar</button>
+      </div>
+      <pre id="c2"><code>&lt;script type="text/javascript"&gt;
+  _linkedin_partner_id = "<span class="ph">1234567</span>";
+  window._linkedin_data_partner_ids = window._linkedin_data_partner_ids || [];
+  window._linkedin_data_partner_ids.push(_linkedin_partner_id);
+&lt;/script&gt;
+&lt;script type="text/javascript"&gt;
+  (function(l) {
+    if (!l){window.lintrk = function(a,b){window.lintrk.q.push([a,b])};
+    window.lintrk.q=[]}
+    var s = document.getElementsByTagName("script")[0];
+    var b = document.createElement("script");
+    b.type = "text/javascript"; b.async = true;
+    b.src = "https://snap.licdn.com/li.lms-analytics/insight.min.js";
+    s.parentNode.insertBefore(b, s);
+  })(window.lintrk);
+&lt;/script&gt;
+&lt;noscript&gt;
+  &lt;img height="1" width="1" style="display:none;" alt=""
+       src="https://px.ads.linkedin.com/collect/?pid=<span class="ph">1234567</span>&amp;fmt=gif" /&gt;
+&lt;/noscript&gt;</code></pre>
+    </div>
+
+    <div class="codeblock">
+      <div class="codehead">
+        <div>
+          <div class="cname">3 · Disparo da conversão no envio do formulário</div>
+          <div class="cwhere">O estágio 6 da engrenagem — sem isto, nada é medido</div>
+        </div>
+        <button class="copybtn" type="button" data-copy="c3">Copiar</button>
+      </div>
+      <pre id="c3"><code>&lt;script&gt;
+document.getElementById('<span class="ph">formulario-contato</span>').addEventListener('submit', function () {
+
+  <span class="cmt">// Google Ads — avisa qual anúncio gerou o contato</span>
+  gtag('event', 'conversion', {
+    'send_to': '<span class="ph">AW-XXXXXXXXX</span>/<span class="ph">AbC-D_efGhIjK</span>'
+  });
+
+  <span class="cmt">// GA4 — registra o evento para análise</span>
+  gtag('event', 'generate_lead', {
+    'produto': '<span class="ph">PMGO</span>'   <span class="cmt">// troque conforme a landing page</span>
+  });
+
+  <span class="cmt">// LinkedIn — informa a conversão à campanha</span>
+  if (window.lintrk) {
+    window.lintrk('track', { conversion_id: <span class="ph">9876543</span> });
+  }
+
+});
+&lt;/script&gt;</code></pre>
+    </div>
+
+    <div class="callout alerta">
+      <p><b>Confira antes de confiar nos números.</b> Instalar a tag não garante que ela dispara. Use a extensão <i>Google Tag Assistant</i> e o modo <i>DebugView</i> do GA4 para ver o evento acontecendo ao vivo, e faça um envio de teste real do formulário antes de subir qualquer campanha.</p>
+      <p>Uma conversão que não registra faz a plataforma otimizar para o público errado — pior do que não ter tag nenhuma, porque você acredita nos dados.</p>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>Consentimento — atenção redobrada aqui</h2>
+    <p class="section-sub">Este ponto é mais sensível para a Obliant do que para a maioria das empresas.</p>
+    <div class="callout">
+      <p>Essas tags gravam cookies e enviam dados de comportamento para Google e LinkedIn. Sob a LGPD, isso exige base legal e informação clara ao titular — na prática, um aviso de cookies que permita recusar, e as tags só disparando após o aceite.</p>
+      <p><b>Por que isso pesa mais aqui:</b> a Obliant vende consultoria de LGPD, DPO as a Service e Canal de Ética. Uma landing page nossa rastreando visitante sem consentimento seria uma contradição encontrável por qualquer prospect — e justamente pelos mais criteriosos, que são o público que queremos.</p>
+      <p>Vale acionar a squad de Governance para revisar a página antes de publicar. É rápido e elimina um risco desproporcional ao tamanho da campanha.</p>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>Antes de ligar a primeira campanha</h2>
+    <p class="section-sub">Cada item aqui já causou desperdício de verba em campanha de alguém.</p>
+    <div class="checklist">
+      <div class="chk"><span class="box"></span><span class="txt">Landing page <b>por produto</b> no ar — nunca apontar anúncio para a home</span></div>
+      <div class="chk"><span class="box"></span><span class="txt">As três tags instaladas e <b>verificadas ao vivo</b>, não só coladas</span></div>
+      <div class="chk"><span class="box"></span><span class="txt">Envio de teste do formulário feito, com o registro chegando no destino</span></div>
+      <div class="chk"><span class="box"></span><span class="txt">Definido <b>quem responde</b> o lead e em quanto tempo</span></div>
+      <div class="chk"><span class="box"></span><span class="txt">Aviso de cookies funcionando, com as tags respeitando a recusa</span></div>
+      <div class="chk"><span class="box"></span><span class="txt">Lista inicial de <b>palavras negativas</b> — curso, grátis, vaga, salário, o que é</span></div>
+      <div class="chk"><span class="box"></span><span class="txt">Orçamento diário definido e <b>limite de gasto</b> configurado na conta</span></div>
+      <div class="chk"><span class="box"></span><span class="txt">Campanhas separadas por produto, para conseguir comparar depois</span></div>
+    </div>
+  </div>
+
+  <div class="footnote">
+    Material interno da squad Omnichannel · complementa a <a href="https://obliant.github.io/estrategia-omnichannel/" style="color:var(--accent)">estratégia</a> e a <a href="https://obliant.github.io/proposta-trafego-pago/" style="color:var(--accent)">proposta de investimento</a>.<br>
+    Os identificadores nos exemplos são fictícios — substituir pelos das contas reais quando forem criadas.
+  </div>
+</div>
+
+<script>
+document.querySelectorAll('.copybtn').forEach(function (btn) {
+  btn.addEventListener('click', function () {
+    var alvo = document.getElementById(btn.dataset.copy);
+    navigator.clipboard.writeText(alvo.innerText).then(function () {
+      var antes = btn.textContent;
+      btn.textContent = 'Copiado';
+      setTimeout(function () { btn.textContent = antes; }, 1800);
+    });
+  });
+});
+</script>
+</body>
+</html>
