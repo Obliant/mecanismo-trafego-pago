@@ -103,6 +103,41 @@
     .passo{padding:16px 18px}
   }
 
+  /* ---------- Montar a campanha (aba 3) ---------- */
+  .kw{width:100%;border-collapse:collapse;font-size:13px;margin-top:10px}
+  .kw th{text-align:left;font-size:10px;text-transform:uppercase;letter-spacing:.05em;color:var(--muted);font-weight:700;padding:0 12px 8px;border-bottom:1px solid var(--line)}
+  .kw td{padding:9px 12px;border-bottom:1px solid var(--line);vertical-align:top;line-height:1.45}
+  .kw td:first-child,.kw th:first-child{padding-left:0}
+  .kw .termo{font-family:var(--font-mono);font-size:12.5px;color:var(--ink);font-weight:600}
+  .kw .corr{font-family:var(--font-mono);font-size:10.5px;color:var(--accent);white-space:nowrap}
+  .kw .pq{color:var(--muted);font-size:12px}
+
+  .negativas{background:var(--code-bg);color:var(--code-ink);border-radius:12px;padding:16px 18px;margin-top:12px;font-family:var(--font-mono);font-size:12.5px;line-height:1.9;word-spacing:.2em}
+
+  .anuncio{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:16px 18px;margin-top:12px}
+  .anuncio .quem{font-family:var(--font-mono);font-size:10px;text-transform:uppercase;letter-spacing:.06em;color:var(--accent);margin-bottom:10px}
+  .anuncio .campo{display:grid;grid-template-columns:88px 1fr 52px;gap:12px;align-items:baseline;padding:7px 0;border-top:1px dashed var(--line)}
+  .anuncio .campo:first-of-type{border-top:0}
+  .anuncio .rot{font-family:var(--font-mono);font-size:10px;text-transform:uppercase;letter-spacing:.05em;color:var(--muted)}
+  .anuncio .txt{font-size:13.5px;line-height:1.5}
+  .anuncio .cont{font-family:var(--font-mono);font-size:10.5px;color:var(--muted);text-align:right;white-space:nowrap}
+  .anuncio .cont.perto{color:#a9702a}
+
+  .limite{background:var(--panel-2);border-radius:10px;padding:12px 15px;margin-top:12px;font-size:12.5px;line-height:1.55;color:var(--muted)}
+  .limite b{color:var(--ink);font-weight:600}
+
+  .lp{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:18px 20px;margin-top:12px}
+  .lp .bloco{padding:10px 0;border-top:1px dashed var(--line)}
+  .lp .bloco:first-child{border-top:0;padding-top:0}
+  .lp .rot{font-family:var(--font-mono);font-size:10px;text-transform:uppercase;letter-spacing:.05em;color:var(--accent);display:block;margin-bottom:4px}
+  .lp .val{font-size:14px;line-height:1.55}
+  .lp .val.grande{font-family:var(--font-head);font-size:19px;line-height:1.3}
+
+  @media (max-width:760px){
+    .anuncio .campo{grid-template-columns:1fr;gap:2px}
+    .anuncio .cont{text-align:left}
+  }
+
   /* ---------- Indice ---------- */
   .indice{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:24px 26px;margin:32px 0 48px}
   .indice > .titulo{font-family:var(--font-mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);margin-bottom:18px}
@@ -233,6 +268,7 @@
   <div class="abas">
     <button class="aba ativa" data-aba="como" type="button">Como funciona</button>
     <button class="aba" data-aba="passo" type="button">Passo a passo</button>
+    <button class="aba" data-aba="montar" type="button">Montar a campanha</button>
   </div>
 
   <div id="tabComo">
@@ -979,6 +1015,252 @@ document.getElementById('<span class="ph">formulario-contato</span>').addEventLi
     As interfaces das plataformas mudam com frequência — se um caminho não bater, procure pela função descrita, não pelo nome exato do botão.
   </div>
   </div><!-- fim tabPasso -->
+
+  <div id="tabMontar" style="display:none">
+
+  <div class="tag">Montar a campanha</div>
+  <div class="date">Conteúdo pronto para colar nas plataformas</div>
+
+  <h1>A campanha escrita, pronta para subir.</h1>
+  <p class="lede">O passo a passo diz <b>como</b> montar. Esta aba entrega <b>o quê</b>: as palavras-chave, os anúncios, o público e o texto das páginas — já escritos para PMGO e PMO, respeitando os limites de caracteres de cada plataforma.</p>
+
+  <div class="avisos">
+    <p><b>Tudo aqui é ponto de partida, não versão final.</b> Os anúncios só provam o que valem depois de rodar, e as palavras-chave precisam ser conferidas no Planejador do Google — só ele mostra o volume de busca real e o custo estimado no Brasil.</p>
+    <p>Comece com o que está escrito, meça, e substitua pelo que funcionar.</p>
+  </div>
+
+  <div class="indice-passo">
+    <div class="titulo">Nesta aba</div>
+    <ol>
+      <li><span class="et">Estrutura</span><a href="#estrutura">Como organizar as contas</a><span class="dur">campanhas e grupos</span></li>
+      <li><span class="et">Google</span><a href="#palavras">Palavras-chave por produto</a><span class="dur">com negativas</span></li>
+      <li><span class="et">Google</span><a href="#anuncios-google">Anúncios escritos</a><span class="dur">6 anúncios</span></li>
+      <li><span class="et">LinkedIn</span><a href="#linkedin-publico">Público e anúncios</a><span class="dur">fase 2</span></li>
+      <li><span class="et">Páginas</span><a href="#lp-copy">Texto das landing pages</a><span class="dur">PMGO e PMO</span></li>
+    </ol>
+  </div>
+
+  <div class="etapa"><span class="num">Estrutura</span><span class="risco"></span></div>
+  <div class="section" id="estrutura">
+    <h2>Como organizar as contas</h2>
+    <p class="section-sub">Uma campanha por produto. É o que permite, no fim do piloto, dizer qual dos dois traz lead mais barato — e mover verba com base em dado, não em impressão.</p>
+
+    <div class="tree">
+      <div class="lvl0">Conta Google Ads · Obliant</div>
+      <div class="ind1">├─ <b>Campanha: PMGO</b> <span class="cm">— orçamento diário próprio</span></div>
+      <div class="ind2">│&nbsp;&nbsp; ├─ Grupo: governança de portfólio <span class="cm">— termos técnicos</span></div>
+      <div class="ind2">│&nbsp;&nbsp; └─ Grupo: sintoma <span class="cm">— termos de dor, alcançam o Diretor</span></div>
+      <div class="ind1">└─ <b>Campanha: PMO</b> <span class="cm">— orçamento diário próprio</span></div>
+      <div class="ind2">&nbsp;&nbsp;&nbsp; ├─ Grupo: implantação de ERP <span class="cm">— maior volume esperado</span></div>
+      <div class="ind2">&nbsp;&nbsp;&nbsp; └─ Grupo: PMO terceirizado <span class="cm">— genérico da categoria</span></div>
+    </div>
+
+    <div class="callout">
+      <p><b>Divisão do orçamento no cenário Moderado (R$ 3.300/mês):</b> comece com <b>R$ 60/dia em PMO</b> e <b>R$ 50/dia em PMGO</b>. O PMO leva um pouco mais porque "implantação de ERP" tende a ter mais volume de busca que "governança de portfólio".</p>
+      <p>Revise essa divisão na semana 3, com dado real. Se um dos dois não gastar o orçamento por falta de busca, mova a diferença para o outro em vez de deixar sobrar.</p>
+    </div>
+  </div>
+
+  <div class="etapa"><span class="num">Google</span><span class="risco"></span></div>
+  <div class="section" id="palavras">
+    <h2>Palavras-chave por produto</h2>
+    <p class="section-sub">Correspondência <b>de frase</b> (entre aspas) e <b>exata</b> (entre colchetes) no início. A ampla alcança muito mais gente e desperdiça muito mais — deixe para quando houver histórico.</p>
+
+    <h3 style="margin-top:26px">Campanha PMGO</h3>
+    <div class="tblwrap">
+      <table class="kw">
+        <thead><tr><th>Palavra-chave</th><th>Correspondência</th><th>Por que entra</th></tr></thead>
+        <tbody>
+          <tr><td class="termo">"pmo terceirizado"</td><td class="corr">frase</td><td class="pq">Termo mais direto da categoria — quem busca já sabe o que quer</td></tr>
+          <tr><td class="termo">"escritório de projetos terceirizado"</td><td class="corr">frase</td><td class="pq">Mesma intenção, vocabulário de quem é da área</td></tr>
+          <tr><td class="termo">"consultoria gestão de portfólio de projetos"</td><td class="corr">frase</td><td class="pq">Descreve exatamente o PMGO</td></tr>
+          <tr><td class="termo">"governança de projetos"</td><td class="corr">frase</td><td class="pq">Volume maior, intenção menos definida — vigiar de perto</td></tr>
+          <tr><td class="termo">[escritório de gerenciamento de projetos]</td><td class="corr">exata</td><td class="pq">Termo formal, usado por quem já pesquisou o assunto</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3 style="margin-top:26px">Campanha PMO</h3>
+    <div class="tblwrap">
+      <table class="kw">
+        <thead><tr><th>Palavra-chave</th><th>Correspondência</th><th>Por que entra</th></tr></thead>
+        <tbody>
+          <tr><td class="termo">"consultoria implantação erp"</td><td class="corr">frase</td><td class="pq">Provável maior volume do conjunto — gatilho clássico</td></tr>
+          <tr><td class="termo">"gestão de projeto de implantação"</td><td class="corr">frase</td><td class="pq">Mesmo momento, outro jeito de descrever</td></tr>
+          <tr><td class="termo">"pmo de implantação"</td><td class="corr">frase</td><td class="pq">Nome exato do produto</td></tr>
+          <tr><td class="termo">"consultoria em gerenciamento de projetos"</td><td class="corr">frase</td><td class="pq">Guarda-chuva da categoria</td></tr>
+          <tr><td class="termo">[pmo ágil]</td><td class="corr">exata</td><td class="pq">Nicho pequeno, mas altamente qualificado quando aparece</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3 style="margin-top:26px">Grupo de sintoma — para alcançar o Diretor</h3>
+    <p class="section-sub" style="margin-bottom:8px">Quem digita estes termos não conhece o vocabulário de PMO. Costuma ser quem sofre o problema de cima, não quem executa — ou seja, o comprador econômico.</p>
+    <div class="tblwrap">
+      <table class="kw">
+        <thead><tr><th>Palavra-chave</th><th>Correspondência</th><th>Por que entra</th></tr></thead>
+        <tbody>
+          <tr><td class="termo">"como reduzir atrasos em projetos"</td><td class="corr">frase</td><td class="pq">Linguagem de sintoma, não de solução</td></tr>
+          <tr><td class="termo">"por que meus projetos atrasam"</td><td class="corr">frase</td><td class="pq">Idem — provável volume baixo, mas altamente revelador</td></tr>
+          <tr><td class="termo">"melhorar entrega de projetos"</td><td class="corr">frase</td><td class="pq">Busca de quem quer resolver, sem saber como se chama</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="armadilha" style="margin-top:14px"><b>Trate este grupo como experimento.</b> Termos de sintoma trazem também estudantes e curiosos. Se em duas semanas ele gastar sem gerar contato, pause — e considere que esse público talvez só se alcance mesmo pelo LinkedIn.</div>
+
+    <h3 style="margin-top:30px">Palavras negativas — aplicar desde o primeiro dia</h3>
+    <p class="section-sub" style="margin-bottom:8px">Cada termo aqui é dinheiro que deixa de ser gasto com quem nunca contrataria.</p>
+    <div class="negativas">
+      curso · cursos · grátis · gratuito · vaga · vagas · emprego · salário · quanto ganha · o que é · significado · conceito · pdf · modelo · template · planilha · tcc · monografia · artigo · certificação · certificado · pmp · exame · simulado · prova · concurso · faculdade · pós-graduação · mba · apostila · download · estágio · júnior · trainee
+    </div>
+    <div class="limite">
+      <b>Como manter a lista viva:</b> toda semana, abra o relatório de <b>termos de pesquisa</b> — ele mostra o que as pessoas realmente digitaram, não o que você cadastrou. Cada termo irrelevante que aparecer vira uma negativa nova. É a manutenção que mais economiza verba num piloto.
+    </div>
+  </div>
+
+  <div class="etapa"><span class="num">Google</span><span class="risco"></span></div>
+  <div class="section" id="anuncios-google">
+    <h2>Anúncios escritos</h2>
+    <p class="section-sub">Três por grupo, para a plataforma testar entre eles. O título precisa conter a palavra que a pessoa buscou — é isso que faz a nota de relevância subir e o clique custar menos.</p>
+
+    <div class="limite">
+      <b>Limites do Google:</b> título até <b>30 caracteres</b>, descrição até <b>90</b>. O número ao lado de cada linha é a contagem — se estourar, a plataforma recusa.
+    </div>
+
+    <div class="anuncio">
+      <div class="quem">PMGO · grupo governança de portfólio</div>
+      <div class="campo"><span class="rot">Título 1</span><span class="txt">PMO Terceirizado</span><span class="cont">16/30</span></div>
+      <div class="campo"><span class="rot">Título 2</span><span class="txt">Governança de Projetos</span><span class="cont">22/30</span></div>
+      <div class="campo"><span class="rot">Título 3</span><span class="txt">Diagnóstico em 30 Minutos</span><span class="cont">25/30</span></div>
+      <div class="campo"><span class="rot">Descrição 1</span><span class="txt">Seus projetos atrasam e ninguém sabe por quê? Estruture cronograma e prioridade.</span><span class="cont">80/90</span></div>
+      <div class="campo"><span class="rot">Descrição 2</span><span class="txt">Especialistas seniores conduzindo a governança do seu portfólio. Fale conosco.</span><span class="cont">77/90</span></div>
+    </div>
+
+    <div class="anuncio">
+      <div class="quem">PMGO · variação para teste</div>
+      <div class="campo"><span class="rot">Título 1</span><span class="txt">Escritório de Projetos</span><span class="cont">22/30</span></div>
+      <div class="campo"><span class="rot">Título 2</span><span class="txt">Sem Montar Equipe Interna</span><span class="cont">25/30</span></div>
+      <div class="campo"><span class="rot">Título 3</span><span class="txt">Obliant · 6 Anos no Mercado</span><span class="cont">27/30</span></div>
+      <div class="campo"><span class="rot">Descrição 1</span><span class="txt">Governança de portfólio sem contratar time. Comece com um diagnóstico rápido.</span><span class="cont">77/90</span></div>
+      <div class="campo"><span class="rot">Descrição 2</span><span class="txt">Priorização, risco e cronograma sob controle da diretoria. Saiba como.</span><span class="cont">69/90</span></div>
+    </div>
+
+    <div class="anuncio">
+      <div class="quem">PMO · grupo implantação de ERP</div>
+      <div class="campo"><span class="rot">Título 1</span><span class="txt">PMO de Implantação de ERP</span><span class="cont">25/30</span></div>
+      <div class="campo"><span class="rot">Título 2</span><span class="txt">Sua Implantação no Prazo</span><span class="cont">24/30</span></div>
+      <div class="campo"><span class="rot">Título 3</span><span class="txt">Conversa de 30 Minutos</span><span class="cont">22/30</span></div>
+      <div class="campo"><span class="rot">Descrição 1</span><span class="txt">Implantar ERP não é só técnico: cronograma, risco e adesão decidem o resultado.</span><span class="cont">78/90</span></div>
+      <div class="campo"><span class="rot">Descrição 2</span><span class="txt">Conduzimos a implantação ponta a ponta, com quem já fez isso antes.</span><span class="cont">66/90</span></div>
+    </div>
+
+    <div class="anuncio">
+      <div class="quem">PMO · variação para teste</div>
+      <div class="campo"><span class="rot">Título 1</span><span class="txt">Consultoria de Projetos</span><span class="cont">23/30</span></div>
+      <div class="campo"><span class="rot">Título 2</span><span class="txt">Da Estratégia à Entrega</span><span class="cont">23/30</span></div>
+      <div class="campo"><span class="rot">Título 3</span><span class="txt">Fale com um Especialista</span><span class="cont">24/30</span></div>
+      <div class="campo"><span class="rot">Descrição 1</span><span class="txt">Muitos projetos ao mesmo tempo e nenhuma visão de qual vai atrasar primeiro?</span><span class="cont">75/90</span></div>
+      <div class="campo"><span class="rot">Descrição 2</span><span class="txt">Estruture a gestão dos seus projetos com apoio de especialistas seniores.</span><span class="cont">72/90</span></div>
+    </div>
+
+    <div class="anuncio">
+      <div class="quem">Grupo de sintoma · fala com o Diretor</div>
+      <div class="campo"><span class="rot">Título 1</span><span class="txt">Projetos Atrasando Sempre?</span><span class="cont">26/30</span></div>
+      <div class="campo"><span class="rot">Título 2</span><span class="txt">Descubra Onde Está Travando</span><span class="cont">27/30</span></div>
+      <div class="campo"><span class="rot">Título 3</span><span class="txt">Diagnóstico Sem Compromisso</span><span class="cont">27/30</span></div>
+      <div class="campo"><span class="rot">Descrição 1</span><span class="txt">Atraso raramente é falta de esforço. Costuma ser falta de governança.</span><span class="cont">68/90</span></div>
+      <div class="campo"><span class="rot">Descrição 2</span><span class="txt">Em 30 minutos mostramos onde seus projetos estão perdendo tempo.</span><span class="cont">63/90</span></div>
+    </div>
+
+    <div class="callout">
+      <p><b>Extensões, que são gratuitas e quase sempre esquecidas:</b> adicione <b>sitelinks</b> (links para PMGO, PMO, Sobre e Contato), <b>frases de destaque</b> ("Especialistas seniores", "Diagnóstico gratuito", "Projetos multissetoriais") e <b>snippet estruturado</b> com os serviços. Elas aumentam o tamanho do anúncio na tela e a taxa de clique, sem custo adicional.</p>
+    </div>
+  </div>
+
+  <div class="etapa"><span class="num">LinkedIn</span><span class="risco"></span></div>
+  <div class="section" id="linkedin-publico">
+    <h2>Público e anúncios do LinkedIn</h2>
+    <p class="section-sub">Para a fase 2, quando a landing page já tiver provado que converte. Aqui você escolhe a pessoa diretamente — é a vantagem que justifica o clique mais caro.</p>
+
+    <div class="tblwrap">
+      <table class="campos">
+        <thead><tr><th>Filtro</th><th>O que colocar</th></tr></thead>
+        <tbody>
+          <tr><td class="cfg">Cargo</td><td>Diretor de Operações · Diretor de TI · Diretor de Projetos · Gerente de Projetos · Head de PMO · Diretor de Transformação</td></tr>
+          <tr><td class="cfg">Setor</td><td>Indústria · Mineração · Energia · Alimentos e bebidas · Logística · Saúde · Varejo — os setores onde a Obliant já tem experiência</td></tr>
+          <tr><td class="cfg">Porte</td><td>201 a 500 · 501 a 1.000 · 1.001 a 5.000 funcionários</td></tr>
+          <tr><td class="cfg">Local</td><td>Brasil</td></tr>
+          <tr><td class="cfg">Expansão automática</td><td><b>Desmarcar.</b> Vem ligada e desmancha em silêncio a segmentação que você acabou de montar</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="armadilha" style="margin-top:14px"><b>Confira o tamanho estimado do público</b> antes de salvar. Abaixo de aproximadamente 20 mil pessoas, o custo dispara e a mesma pessoa vê o anúncio muitas vezes. Se ficar pequeno, amplie o porte ou os setores antes de reduzir os cargos — cargo é o filtro que mais importa aqui.</div>
+
+    <div class="limite" style="margin-top:20px">
+      <b>Limites do LinkedIn:</b> texto de introdução funciona melhor até <b>150 caracteres</b> (acima disso o leitor precisa clicar em "ver mais"), e o título até <b>70</b>.
+    </div>
+
+    <div class="anuncio">
+      <div class="quem">Anúncio 1 · abre pelo problema</div>
+      <div class="campo"><span class="rot">Texto</span><span class="txt">Vários projetos ao mesmo tempo e nenhuma visão clara de qual vai atrasar primeiro. É o cenário mais caro quando ninguém percebe a tempo.</span><span class="cont">136/150</span></div>
+      <div class="campo"><span class="rot">Título</span><span class="txt">Governança de projetos que a diretoria enxerga</span><span class="cont">45/70</span></div>
+      <div class="campo"><span class="rot">Botão</span><span class="txt">Saiba mais</span><span class="cont">—</span></div>
+    </div>
+
+    <div class="anuncio">
+      <div class="quem">Anúncio 2 · abre pelo contexto de ERP</div>
+      <div class="campo"><span class="rot">Texto</span><span class="txt">Na implantação de um ERP, o que decide o resultado raramente é a tecnologia. É cronograma, risco e adesão das áreas.</span><span class="cont">115/150</span></div>
+      <div class="campo"><span class="rot">Título</span><span class="txt">Conduza a implantação sem improviso</span><span class="cont">35/70</span></div>
+      <div class="campo"><span class="rot">Botão</span><span class="txt">Saiba mais</span><span class="cont">—</span></div>
+    </div>
+
+    <div class="callout">
+      <p><b>Por que estes textos abrem pelo problema e não pela Obliant:</b> quem vê um anúncio no LinkedIn não estava procurando nada. A primeira linha precisa fazer a pessoa se reconhecer na situação — se começar com "a Obliant é uma consultoria que…", ela rola a tela e segue.</p>
+    </div>
+  </div>
+
+  <div class="etapa"><span class="num">Páginas</span><span class="risco"></span></div>
+  <div class="section" id="lp-copy">
+    <h2>Texto das landing pages</h2>
+    <p class="section-sub">Uma por produto. O título precisa repetir a promessa do anúncio quase palavra por palavra — se quem clicou não reconhecer onde chegou, sai em segundos, e o clique foi pago à toa.</p>
+
+    <h3 style="margin-top:26px">Landing page · PMGO</h3>
+    <div class="lp">
+      <div class="bloco"><span class="rot">Título</span><span class="val grande">Seus projetos atrasam — e a resposta chega sempre tarde demais</span></div>
+      <div class="bloco"><span class="rot">Subtítulo</span><span class="val">Para empresas com vários projetos simultâneos e sem uma governança formal que mostre, antes do prazo estourar, onde está o risco.</span></div>
+      <div class="bloco"><span class="rot">O problema — três sintomas</span><span class="val">Cada área reporta de um jeito, e ninguém consegue comparar.<br>O atraso aparece quando já não dá para corrigir.<br>Prioridade se decide na reunião mais recente, não por critério.</span></div>
+      <div class="bloco"><span class="rot">O que a Obliant faz</span><span class="val">Assumimos a governança do seu portfólio: papéis definidos, ritos de acompanhamento e um painel único de risco e prazo. Você não precisa montar time interno para isso.</span></div>
+      <div class="bloco"><span class="rot">Prova</span><span class="val">Projetos conduzidos em indústria, mineração, energia, logística e saúde — no Brasil e em mais seis países.</span></div>
+      <div class="bloco"><span class="rot">Formulário — título</span><span class="val">Diagnóstico de governança em 30 minutos</span></div>
+      <div class="bloco"><span class="rot">Formulário — apoio</span><span class="val">Uma conversa objetiva sobre como seus projetos são acompanhados hoje, e onde estão os pontos cegos. Sem proposta comercial neste primeiro contato.</span></div>
+      <div class="bloco"><span class="rot">Botão</span><span class="val">Agendar diagnóstico</span></div>
+    </div>
+
+    <h3 style="margin-top:26px">Landing page · PMO</h3>
+    <div class="lp">
+      <div class="bloco"><span class="rot">Título</span><span class="val grande">Implantar o ERP é o começo. Fazer a empresa usar é o desafio</span></div>
+      <div class="bloco"><span class="rot">Subtítulo</span><span class="val">Para quem está em implantação, expansão ou reorganização e precisa que o projeto entregue no prazo, com as áreas junto.</span></div>
+      <div class="bloco"><span class="rot">O problema — três sintomas</span><span class="val">O cronograma escorrega e cada área culpa a outra.<br>Decisões travam esperando alguém que não sabia que precisava decidir.<br>O sistema entra no ar e as pessoas continuam na planilha.</span></div>
+      <div class="bloco"><span class="rot">O que a Obliant faz</span><span class="val">Conduzimos a implantação ponta a ponta — cronograma, riscos, comunicação e adesão das áreas — com especialistas que já fizeram isso em projetos de grande porte.</span></div>
+      <div class="bloco"><span class="rot">Prova</span><span class="val">Atuação direta e em parceria com grandes empresas de tecnologia e consultoria, em programas de alta complexidade.</span></div>
+      <div class="bloco"><span class="rot">Formulário — título</span><span class="val">Converse com quem já conduziu implantações</span></div>
+      <div class="bloco"><span class="rot">Formulário — apoio</span><span class="val">30 minutos para entender o momento do seu projeto e apontar os riscos que costumam passar despercebidos. Sem compromisso.</span></div>
+      <div class="bloco"><span class="rot">Botão</span><span class="val">Agendar conversa</span></div>
+    </div>
+
+    <div class="callout">
+      <p><b>O que não pode ter nessas páginas:</b> menu de navegação para o resto do site, links para outros serviços, e mais de um botão de ação. Todo caminho alternativo é uma fuga que você pagou para acontecer.</p>
+      <p><b>E o campo que vale mais que todos:</b> "qual seu principal desafio hoje?". A resposta prepara a conversa comercial inteira e separa contato curioso de oportunidade real — mais do que telefone ou cargo conseguem.</p>
+    </div>
+  </div>
+
+  <div class="footnote">
+    Material interno da squad Omnichannel · o passo a passo de onde clicar está na aba <a href="#" onclick="trocarAba('passo');return false;">Passo a passo</a>, e o porquê de cada escolha em <a href="#" onclick="trocarAba('como');return false;">Como funciona</a>.<br>
+    Textos e palavras-chave são ponto de partida. Confira o volume de busca no Planejador do Google antes de subir, e substitua pelo que os dados mostrarem.
+  </div>
+
+  </div><!-- fim tabMontar -->
 </div>
 
 <button class="voltar" id="voltar" type="button">↑ Voltar ao índice</button>
@@ -986,12 +1268,15 @@ document.getElementById('<span class="ph">formulario-contato</span>').addEventLi
 <script>
 // Troca de aba. Exposta no escopo global porque os links do passo a passo
 // que apontam para secoes da outra aba chamam irPara() direto no onclick.
+var ABAS = { como: 'tabComo', passo: 'tabPasso', montar: 'tabMontar' };
+
 function trocarAba(qual, subirTopo) {
   document.querySelectorAll('.aba').forEach(function (b) {
     b.classList.toggle('ativa', b.dataset.aba === qual);
   });
-  document.getElementById('tabComo').style.display  = (qual === 'como')  ? '' : 'none';
-  document.getElementById('tabPasso').style.display = (qual === 'passo') ? '' : 'none';
+  Object.keys(ABAS).forEach(function (nome) {
+    document.getElementById(ABAS[nome]).style.display = (nome === qual) ? '' : 'none';
+  });
   if (subirTopo !== false) window.scrollTo(0, 0);
 }
 
@@ -1008,10 +1293,15 @@ document.querySelectorAll('.aba').forEach(function (b) {
 
 (function () {
   var btn = document.getElementById('voltar');
+  // Cada aba tem o seu próprio índice; o botão precisa levar ao da aba aberta.
   function indiceVisivel() {
-    var passo = document.getElementById('tabPasso');
-    var naAbaPasso = passo && passo.style.display !== 'none';
-    return document.querySelector(naAbaPasso ? '.indice-passo' : '.indice');
+    for (var nome in ABAS) {
+      var painel = document.getElementById(ABAS[nome]);
+      if (painel && painel.style.display !== 'none') {
+        return painel.querySelector('.indice, .indice-passo');
+      }
+    }
+    return null;
   }
   btn.addEventListener('click', function () {
     var alvo = indiceVisivel();
