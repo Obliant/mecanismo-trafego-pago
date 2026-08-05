@@ -1342,7 +1342,11 @@ document.querySelectorAll('.aba').forEach(function (b) {
 
 (function () {
   var btn = document.getElementById('voltar');
-  // Cada aba tem o seu próprio índice; o botão precisa levar ao da aba aberta.
+  // De onde a pessoa saltou por último. Voltar para o topo perde o contexto:
+  // quem clicou num item do índice e desceu lendo quer voltar para aquele
+  // ponto, não para o começo da página.
+  var origem = null;
+
   function indiceVisivel() {
     for (var nome in ABAS) {
       var painel = document.getElementById(ABAS[nome]);
@@ -1352,15 +1356,48 @@ document.querySelectorAll('.aba').forEach(function (b) {
     }
     return null;
   }
+
+  function atualizar() {
+    if (origem !== null) {
+      btn.textContent = '↑ Voltar de onde parei';
+      btn.classList.add('ver');
+      return;
+    }
+    btn.textContent = '↑ Voltar ao índice';
+    var alvo = indiceVisivel();
+    btn.classList.toggle('ver', !!alvo && window.scrollY > (alvo.offsetTop + alvo.offsetHeight));
+  }
+
+  // Guarda a posição antes de qualquer salto interno — inclusive os links que
+  // trocam de aba, que também tiram a pessoa do lugar onde estava.
+  document.addEventListener('click', function (e) {
+    var a = e.target.closest && e.target.closest('a[href^="#"]');
+    if (!a) return;
+    var href = a.getAttribute('href');
+    if (href === '#' && !a.getAttribute('onclick')) return;
+    origem = window.scrollY;
+    setTimeout(atualizar, 60);
+  }, true);
+
   btn.addEventListener('click', function () {
+    if (origem !== null) {
+      var voltarPara = origem;
+      origem = null;
+      window.scrollTo({ top: voltarPara, behavior: 'smooth' });
+      setTimeout(atualizar, 500);
+      return;
+    }
     var alvo = indiceVisivel();
     if (alvo) alvo.scrollIntoView({ behavior: 'smooth', block: 'start' });
   });
-  window.addEventListener('scroll', function () {
-    var alvo = indiceVisivel();
-    if (!alvo) return;
-    btn.classList.toggle('ver', window.scrollY > (alvo.offsetTop + alvo.offsetHeight));
-  }, { passive: true });
+
+  // Trocar de aba zera o ponto de partida: ele não vale mais no novo conteúdo.
+  document.querySelectorAll('.aba').forEach(function (b) {
+    b.addEventListener('click', function () { origem = null; setTimeout(atualizar, 60); });
+  });
+
+  window.addEventListener('scroll', atualizar, { passive: true });
+  atualizar();
 })();
 
 document.querySelectorAll('.copybtn').forEach(function (btn) {
