@@ -20,6 +20,10 @@
   :root[data-theme="light"]{ --ink:#12181F; --paper:#F3F4EF; --panel:#FFFFFF; --panel-2:#F8F9F5; --accent:#748029; --accent-bright:#BCD848; --line:#DEE1D6; --muted:#5B6472; --code-bg:#12181F; }
 
   *{box-sizing:border-box}
+  /* Suavidade pelo CSS, e não por window.scrollTo({behavior}): a forma de
+     objeto simplesmente não rola em alguns navegadores. */
+  html{scroll-behavior:smooth}
+  @media (prefers-reduced-motion: reduce){ html{scroll-behavior:auto} }
   body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--font-body)}
   h1,h2,h3{text-wrap:balance}
   .doc{max-width:880px;margin:0 auto;padding:48px 28px 72px}
@@ -1333,7 +1337,7 @@ function trocarAba(qual, subirTopo) {
 function irPara(secao) {
   trocarAba('como', false);
   var alvo = document.getElementById(secao);
-  if (alvo) alvo.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  if (alvo) window.scrollTo(0, alvo.offsetTop);
 }
 
 document.querySelectorAll('.aba').forEach(function (b) {
@@ -1383,12 +1387,12 @@ document.querySelectorAll('.aba').forEach(function (b) {
     if (origem !== null) {
       var voltarPara = origem;
       origem = null;
-      window.scrollTo({ top: voltarPara, behavior: 'smooth' });
+      window.scrollTo(0, voltarPara);
       setTimeout(atualizar, 500);
       return;
     }
     var alvo = indiceVisivel();
-    if (alvo) alvo.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    if (alvo) window.scrollTo(0, alvo.offsetTop);
   });
 
   // Trocar de aba zera o ponto de partida: ele não vale mais no novo conteúdo.
